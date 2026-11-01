@@ -1,0 +1,100 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face { font-family: Inter; font-weight: 900; src: url('file:///usr/share/fonts/opentype/inter/Inter-Black.otf'); }
+html,body{margin:0;background:#000}
+canvas{display:block}
+</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script src="draw.js"></script>
+<script src="stories.js"></script>
+<script>
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+const clean = w => w.toUpperCase().replace(/[.,:!?;"„“]/g, '');
+
+// Split narration into 1-3 word caption chunks and give each a duration.
+function buildTimeline(story, wordRate) {
+  const out = []; let t = 0;
+  story.scenes.forEach((sc, si) => {
+    const words = sc.text.split(/\s+/);
+    const keys = new Set((sc.key || []).map(clean));
+    const chunks = []; let cur = [];
+    words.forEach((w, i) => {
+      cur.push(w);
+      const end = /[.,:!?]$/.test(w);
+      const next = words[i + 1];
+      if (end || cur.length >= 3 || (cur.length >= 2 && next && next.length > 7) || keys.has(clean(w)) && cur.length >= 1 && next && !keys.has(clean(next))) {
+        chunks.push(cur); cur = [];
+      }
+    });
+    if (cur.length) chunks.push(cur);
+    const start = t;
+    const cs = chunks.map(ch => {
+      const last = ch[ch.length - 1];
+      const syll = ch.join(' ').length / 5.5;
+      let d = 0.16 + syll * wordRate;
+      if (/[.!?]$/.test(last)) d += 0.32; else if (/[,:]$/.test(last)) d += 0.15;
+      const o = { words: ch, keys, t0: t, t1: t + d }; t += d; return o;
+    });
+    t += 0.12;
+    out.push({ scene: sc, t0: start, t1: t, chunks: cs, index: si });
+  });
+  return { scenes: out, duration: t + 0.6 };
+}
+
+let TL = null, STORY = null;
+window.setup = (name, rate) => { STORY = STORIES[name]; TL = buildTimeline(STORY, rate || 0.27); return { duration: TL.duration, scenes: TL.scenes.map(s => ({ t0: s.t0, t1: s.t1, text: s.scene.text, chunks: s.chunks.map(c => ({ t0: c.t0, t1: c.t1, text: c.words.join(' ') })) })) }; };
+
+const easeOut = x => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+const backOut = x => { x = Math.min(1, Math.max(0, x)); const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+
+function drawScene(sc, t, local, dur) {
+  const z = 1.0 + 0.07 * (local / dur) + 0.08 * (1 - easeOut(local / 0.28));
+  ctx.save();
+  ctx.translate(540, 900); ctx.scale(z, z); ctx.translate(-540, -900);
+  (BG[sc.bg] || bgKitchen)(ctx, Object.assign({}, sc.bgo || {}), t);
+  sc.items.forEach((it, i) => {
+    if (it.t === 'table') table(ctx);
+    else if (it.t === 'p') {
+      const pop = backOut((local - i * 0.06) / 0.35);
+      ctx.save(); ctx.translate(it.x, it.y + 200); ctx.scale(pop, pop); ctx.translate(-it.x, -it.y - 200);
+      person(ctx, it, t); ctx.restore();
+    } else prop(ctx, it, t);
+  });
+  ctx.restore();
+}
+
+function drawCaption(chunk, t) {
+  const local = t - chunk.t0;
+  const sc = 0.7 + 0.3 * backOut(local / 0.16);
+  let size = 96;
+  ctx.font = `900 ${size}px Inter`;
+  const words = chunk.words.map(w => w.toUpperCase());
+  const full = words.join(' ');
+  while (ctx.measureText(full).width > 940 && size > 50) { size -= 4; ctx.font = `900 ${size}px Inter`; }
+  const total = ctx.measureText(full).width, space = ctx.measureText(' ').width;
+  ctx.save(); ctx.translate(540, 1500); ctx.scale(sc, sc);
+  ctx.textBaseline = 'middle'; ctx.lineJoin = 'round';
+  let x = -total / 2;
+  words.forEach((w, i) => {
+    const ww = ctx.measureText(w).width;
+    ctx.lineWidth = size * 0.22; ctx.strokeStyle = '#1a1612'; ctx.strokeText(w, x, 0);
+    ctx.fillStyle = chunk.keys.has(clean(w)) ? '#ffd23f' : '#ffffff'; ctx.fillText(w, x, 0);
+    x += ww + space;
+  });
+  ctx.restore();
+}
+
+window.renderAt = (t) => {
+  ctx.clearRect(0, 0, 1080, 1920);
+  let s = TL.scenes.find(s => t >= s.t0 && t < s.t1) || TL.scenes[TL.scenes.length - 1];
+  drawScene(s.scene, t, t - s.t0, s.t1 - s.t0);
+  const ch = s.chunks.find(c => t >= c.t0 && t < c.t1);
+  if (ch) drawCaption(ch, t);
+  // soft vignette
+  const g = ctx.createRadialGradient(540, 960, 600, 540, 960, 1250);
+  g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,0.28)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 1080, 1920);
+};
+window.frameJpeg = () => cv.toDataURL('image/jpeg', 0.92).slice(23);
+</script></body></html>
