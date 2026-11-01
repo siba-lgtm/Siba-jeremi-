@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio Voix & Vidéo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🎬 Studio Voix &amp; Vidéo</h1>
+    <p class="sub">Voix off ElevenLabs + montage vidéo, directement dans ton navigateur.</p>
+  </header>
+
+  <main>
+    <!-- 1. Clé API -->
+    <section class="card">
+      <h2>1. Connexion ElevenLabs</h2>
+      <p class="hint">Ta clé API reste uniquement dans ce navigateur (jamais envoyée ailleurs qu'à ElevenLabs, jamais dans le code).
+        Trouve-la sur <a href="https://elevenlabs.io/app/settings/api-keys" target="_blank" rel="noopener">elevenlabs.io → Settings → API Keys</a>.</p>
+      <div class="row">
+        <input id="apiKey" type="password" placeholder="sk_..." autocomplete="off">
+        <button id="saveKey">Connecter</button>
+      </div>
+      <p id="keyStatus" class="status"></p>
+    </section>
+
+    <!-- 2. Voix off -->
+    <section class="card">
+      <h2>2. Voix off</h2>
+      <label>Voix
+        <div class="row">
+          <select id="voice"><option value="">— connecte-toi d'abord —</option></select>
+          <button id="previewVoice" class="ghost" title="Écouter un extrait">▶︎</button>
+        </div>
+      </label>
+      <label>Modèle
+        <select id="model">
+          <option value="eleven_multilingual_v2">Multilingual v2 (qualité, recommandé)</option>
+          <option value="eleven_v3">Eleven v3 (expressif, tags comme [excited])</option>
+          <option value="eleven_flash_v2_5">Flash v2.5 (rapide, moins cher)</option>
+        </select>
+      </label>
+      <label>Texte
+        <textarea id="text" rows="6" placeholder="Écris ici le texte de ta voix off…"></textarea>
+      </label>
+      <p class="hint"><span id="charCount">0</span> caractères (chaque génération consomme des crédits).</p>
+      <button id="generate" class="primary">🎙️ Générer la voix off</button>
+      <p id="ttsStatus" class="status"></p>
+      <div id="audioBox" hidden>
+        <audio id="audio" controls></audio>
+        <a id="downloadAudio" class="btn" download="voix-off.mp3">⬇️ Télécharger le MP3</a>
+      </div>
+      <label class="small">…ou utiliser un fichier audio existant
+        <input id="audioFile" type="file" accept="audio/*">
+      </label>
+    </section>
+
+    <!-- 3. Vidéo -->
+    <section class="card">
+      <h2>3. Vidéo</h2>
+      <label>Images et/ou vidéos (dans l'ordre)
+        <input id="media" type="file" accept="image/*,video/*" multiple>
+      </label>
+      <div id="thumbs" class="thumbs"></div>
+      <div class="grid">
+        <label>Format
+          <select id="format">
+            <option value="1920x1080">16:9 — YouTube</option>
+            <option value="1080x1920">9:16 — TikTok / Reels / Shorts</option>
+            <option value="1080x1080">1:1 — Carré</option>
+          </select>
+        </label>
+        <label>Titre (optionnel)
+          <input id="title" type="text" placeholder="Titre affiché au début">
+        </label>
+      </div>
+      <label class="check"><input id="subs" type="checkbox" checked> Afficher le texte en sous-titres</label>
+      <label class="check"><input id="kenburns" type="checkbox" checked> Effet de zoom doux sur les images</label>
+      <button id="render" class="primary">🎬 Créer la vidéo</button>
+      <p id="renderStatus" class="status"></p>
+      <canvas id="canvas" width="1920" height="1080"></canvas>
+      <div id="videoBox" hidden>
+        <video id="output" controls playsinline></video>
+        <a id="downloadVideo" class="btn" download="video">⬇️ Télécharger la vidéo</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>Propulsé par l'API ElevenLabs · le montage se fait localement dans ton navigateur.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
