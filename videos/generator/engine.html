@@ -43,7 +43,24 @@ function buildTimeline(story, wordRate) {
 }
 
 let TL = null, STORY = null;
-window.setup = (name, rate, durations) => { STORY = STORIES[name]; TL = buildTimeline(STORY, rate || 0.27);
+window.setup = (name, rate, durations, words) => { STORY = STORIES[name]; TL = buildTimeline(STORY, rate || 0.27);
+  if (words) { // exact sync: one [start, end] per spoken word, in script order
+    let k = 0; const firstIdx = [];
+    TL.scenes.forEach(s => { firstIdx.push(k); s.chunks.forEach(c => { c.k = k; k += c.words.length; }); });
+    TL.scenes.forEach((s, i) => {
+      const prevEnd = i ? words[firstIdx[i] - 1][1] : 0;
+      s.t0 = i ? Math.max(prevEnd, words[firstIdx[i]][0] - 0.1) : 0;
+    });
+    const endAll = words[words.length - 1][1];
+    TL.scenes.forEach((s, i) => {
+      s.t1 = i + 1 < TL.scenes.length ? TL.scenes[i + 1].t0 : endAll + 1.2;
+      s.chunks.forEach((c, j) => {
+        c.t0 = Math.max(s.t0, words[c.k][0] - 0.05);
+        c.t1 = j + 1 < s.chunks.length ? words[s.chunks[j + 1].k][0] - 0.05 : Math.min(s.t1, words[c.k + c.words.length - 1][1] + 0.35);
+      });
+    });
+    TL.duration = endAll + 1.2;
+  }
   if (durations) { // re-time every scene to match the real voice-over (one duration per scene, in seconds)
     let t = 0;
     TL.scenes.forEach((s, i) => {
