@@ -151,6 +151,8 @@ const PRESETS = {
   pupil1: { skin: '#7a4a2e', hair: '#151515', style: 'short', shirt: '#5aa9e6' },
   pupil2: { skin: '#f3d2b5', hair: '#e0a040', style: 'long', shirt: '#e87ea1' },
   pupil3: { skin: '#e0b08a', hair: '#222', style: 'spiky', shirt: '#4fbf8f' },
+  opa: { skin: '#f0c7a8', hair: '#e8e8e8', style: 'bald', shirt: '#8a5a3c', glasses: true, beard: true },
+  teen: { skin: '#f3c39d', hair: '#6b3e1f', style: 'spiky', shirt: '#ff8a3d' },
 };
 
 function hair(c, p, R) {
@@ -290,6 +292,7 @@ function glass(c, x, y, s, liquid, level = 0.8) {
   c.restore();
 }
 function prop(c, p, t) {
+  if (prop2(c, p, t)) return;
   const s = p.s || 1, x = p.x, y = p.y;
   switch (p.name) {
     case 'koriander': {
@@ -373,6 +376,38 @@ function prop(c, p, t) {
 }
 function star(c, x, y, r) {
   c.beginPath(); for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4, rr2 = i % 2 ? r * 0.35 : r; c.lineTo(x + Math.cos(a) * rr2, y + Math.sin(a) * rr2); } c.closePath(); c.fillStyle = '#fff6b0'; c.fill();
+}
+
+
+function sprout(c, x, y, r) {
+  circle(c, x, y, r, '#7cbf4a', r * 0.14);
+  c.strokeStyle = '#3f7d2a'; c.lineWidth = r * 0.12; c.beginPath(); c.arc(x - r * 0.2, y, r * 0.7, -0.9, 0.9); c.stroke();
+  c.beginPath(); c.arc(x + r * 0.5, y, r * 0.5, 2.2, 4.1); c.stroke();
+}
+function prop2(c, p, t) {
+  const s = p.s || 1, x = p.x, y = p.y;
+  switch (p.name) {
+    case 'sprouts': plate(c, x, y + 30 * s, 1.1 * s);
+      [[-90, 0], [-30, -10], [30, -5], [90, 5], [-60, -45], [0, -55], [60, -45], [-25, -90], [30, -90]].forEach(([a, b]) => sprout(c, x + a * s, y + b * s, 38 * s)); return true;
+    case 'sproutEdge': plate(c, x, y, 1.1 * s); [[-170, -5], [-150, 25], [-165, -35]].forEach(([a, b]) => sprout(c, x + a * s, y + b * s, 30 * s)); return true;
+    case 'washer': { c.save(); c.translate(x, y); c.scale(s, s);
+      rr(c, -230, -270, 460, 540, 30); fillStroke(c, '#f4f6f8', 8); c.fillStyle = '#cfd6de'; c.fillRect(-226, -266, 452, 80);
+      circle(c, 150, -225, 18, '#7cc8ff', 5); circle(c, 90, -225, 14, '#ffd25a', 5);
+      circle(c, 0, 40, 170, '#9aa6b2', 10); c.save(); c.beginPath(); c.arc(0, 40, 150, 0, 7); c.clip(); c.fillStyle = '#6fb6e8'; c.fillRect(-160, -120, 320, 320);
+      c.translate(0, 40); c.rotate(t * 5); rr(c, -60, -90, 120, 70, 14); fillStroke(c, '#3d4f8a', 6);
+      for (let i = 0; i < 5; i++) sprout(c, Math.cos(i * 1.3) * 90, Math.sin(i * 1.3) * 90, 26);
+      c.restore(); circle(c, 0, 40, 150, null, 10); c.restore(); return true; }
+    case 'bread': for (let i = 0; i < 6; i++) { c.save(); c.translate(x + (i % 2 ? 20 : -20) * s, y - i * 28 * s); rr(c, -120 * s, -40 * s, 240 * s, 80 * s, 36 * s); fillStroke(c, '#e8b46a', 6 * s); rr(c, -100 * s, -25 * s, 200 * s, 50 * s, 24 * s); c.fillStyle = '#fbe3b0'; c.fill(); c.restore(); } return true;
+    case 'gratin': { c.save(); c.translate(x, y); c.scale(s, s); rr(c, -260, -60, 520, 140, 30); fillStroke(c, '#d0743c', 8); ellipse(c, 0, -50, 240, 50, '#f3c35a', 6);
+      for (let i = 0; i < 9; i++) { const bx = -190 + i * 48, by = -55 + (i % 2) * 18; circle(c, bx, by, 20, '#5aa83a', 4); circle(c, bx + 14, by - 8, 14, '#6fbf4a', 3); }
+      c.strokeStyle = 'rgba(255,255,255,0.7)'; c.lineWidth = 8; for (let i = -1; i <= 1; i++) { c.beginPath(); c.moveTo(i * 120, -110); c.quadraticCurveTo(i * 120 + 20 * Math.sin(t * 3 + i), -150, i * 120, -190); c.stroke(); } c.restore(); return true; }
+    case 'strip': { c.save(); c.translate(x, y); c.scale(s, s); c.rotate(-0.25 + Math.sin(t * 2) * 0.05); rr(c, -45, -150, 90, 300, 10); fillStroke(c, '#ffffff', 7); c.restore(); return true; }
+    case 'strips': for (let i = 0; i < 4; i++) { c.save(); c.translate(x + (i - 1.5) * 60 * s, y); c.rotate((i - 1.5) * 0.15); rr(c, -30 * s, -110 * s, 60 * s, 220 * s, 8); fillStroke(c, '#ffffff', 6); c.restore(); } return true;
+    case 'pocket': for (let i = 0; i < 3; i++) sprout(c, x + i * 28 * s, y - Math.abs(Math.sin(t * 3 + i)) * 10 * s, 26 * s); return true;
+    case 'falling': for (let i = 0; i < 3; i++) { const ft = Math.max(0, t - (p.t0 || 0) - i * 0.25) % 1.4; const yy = y + 0.5 * 1400 * ft * ft * s; sprout(c, x + (i - 1) * 50 * s + ft * 40 * (i - 1), Math.min(yy, y + 300 * s), 32 * s); } return true;
+    case 'sneak': c.font = `900 ${80 * s}px Inter`; c.textAlign = 'center'; c.lineWidth = 12; c.strokeStyle = INK; c.fillStyle = '#ffffff'; c.strokeText('psst…', x, y); c.fillText('psst…', x, y); return true;
+  }
+  return false;
 }
 
 const BG = { kitchen: bgKitchen, classroom: bgClassroom, bathroom: bgBathroom, doctor: bgDoctor, dark: bgDark, glow: bgGlow };
