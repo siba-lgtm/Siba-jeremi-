@@ -19,7 +19,7 @@ const srtTime = s => {
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
   await page.goto('file://' + path.join(__dirname, 'engine.html'));
   await page.evaluate(() => document.fonts.load('900 40px Inter'));
-  const info = await page.evaluate(([s, r]) => window.setup(s, r), [story, process.env.RATE ? Number(process.env.RATE) : undefined]);
+  const info = await page.evaluate(([s, r, d]) => window.setup(s, r, d), [story, process.env.RATE ? Number(process.env.RATE) : undefined, process.env.DURATIONS ? JSON.parse(fs.readFileSync(process.env.DURATIONS, 'utf8')) : undefined]);
   fs.writeFileSync(path.join(outDir, `${story}.timeline.json`), JSON.stringify(info, null, 1));
   let n = 1, srt = '';
   info.scenes.forEach(sc => sc.chunks.forEach(c => { srt += `${n++}\n${srtTime(c.t0)} --> ${srtTime(c.t1)}\n${c.text}\n\n`; }));
