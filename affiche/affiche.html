@@ -1,0 +1,49 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;height:1350px;background:#0b0b0b;font-family:"Inter Display","DejaVu Sans",sans-serif;color:#fff;overflow:hidden;position:relative}
+.glow{position:absolute;right:-120px;top:120px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(255,122,0,.55) 0%,rgba(255,122,0,.12) 45%,transparent 70%)}
+.photo{position:absolute;right:0;top:0;width:640px;height:1070px;background:url(crop.jpg) center top/cover;
+ -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%),linear-gradient(to bottom,#000 72%,transparent 100%);
+ -webkit-mask-composite:source-in;mask-composite:intersect;filter:contrast(1.08) saturate(1.1)}
+.shade{position:absolute;right:0;top:0;width:640px;height:1070px;background:linear-gradient(to bottom,rgba(11,11,11,.55),transparent 22%)}
+.flag{position:absolute;left:60px;top:64px;display:flex;gap:6px}
+.flag i{width:34px;height:8px;border-radius:4px}
+.tag{position:absolute;left:60px;top:92px;font-weight:900;letter-spacing:6px;font-size:22px;color:#ff8a1f}
+h1{position:absolute;left:56px;top:140px;font-weight:900;font-size:100px;line-height:.9;letter-spacing:-4px;text-transform:uppercase}
+h1 span{color:#ff7a00;display:block}
+.sub{position:absolute;left:60px;top:370px;width:430px;font-size:28px;line-height:1.35;color:#d6d6d6;font-weight:500}
+.sub b{color:#fff}
+.cards{position:absolute;left:60px;top:520px;display:flex;flex-direction:column;gap:22px}
+.card{width:470px;height:118px;border-radius:22px;background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.12);backdrop-filter:blur(6px);display:flex;align-items:center;gap:22px;padding:0 24px}
+.ico{width:76px;height:76px;border-radius:18px;background:#ff7a00;display:grid;place-items:center;flex:none}
+.ico svg{width:56px;height:56px;fill:#0b0b0b}
+.card h3{font-weight:900;font-size:34px;letter-spacing:-.5px;text-transform:uppercase}
+.card p{font-size:21px;color:#bdbdbd;margin-top:2px}
+.band{position:absolute;left:0;bottom:0;width:100%;height:230px;background:#ff7a00;display:flex;align-items:center;padding:0 60px;gap:34px}
+.band:before{content:"";position:absolute;left:0;top:-14px;width:100%;height:14px;background:linear-gradient(90deg,#ff7a00 0 33.3%,#fff 33.3% 66.6%,#009e49 66.6%)}
+.phone{width:132px;height:132px;border-radius:50%;background:#0b0b0b;display:grid;place-items:center;flex:none}
+.phone svg{width:66px;height:66px;fill:#ff7a00}
+.cta small{display:block;font-weight:900;font-size:28px;letter-spacing:5px;color:#0b0b0b;text-transform:uppercase}
+.cta strong{display:block;font-weight:900;font-size:104px;letter-spacing:-2px;color:#0b0b0b;line-height:1}
+.cta em{font-style:normal;font-size:24px;font-weight:600;color:#2a1400}
+.stamp{position:absolute;right:48px;top:470px;width:170px;height:170px;border-radius:50%;background:#fff;color:#0b0b0b;display:grid;place-items:center;text-align:center;transform:rotate(-12deg);box-shadow:0 18px 40px rgba(0,0,0,.45);font-weight:900;line-height:1}
+.stamp div{font-size:22px;letter-spacing:1px}.stamp b{display:block;font-size:46px;color:#ff7a00;margin:4px 0}
+.hint{position:absolute;left:60px;top:950px;font-size:30px;line-height:1.3;font-weight:600;color:#e8e8e8}.hint b{color:#ff8a1f}
+</style></head><body>
+<div class="glow"></div><div class="photo"></div><div class="shade"></div>
+<div class="flag"><i style="background:#ff7a00"></i><i style="background:#fff"></i><i style="background:#009e49"></i></div>
+<div class="tag">NOUVEL ARRIVAGE</div>
+<h1>Paires<span>de marque</span></h1>
+<div class="sub">Sneakers, chaussures fermées et claquettes. <b>Du style à tes pieds, au meilleur prix.</b></div>
+<div class="stamp"><div>QUALITÉ<b>TOP</b>PRIX DOUX</div></div>
+<div class="cards">
+ <div class="card"><div class="ico"><svg viewBox="0 0 64 64"><path d="M3 44c0-3 2-5 5-6l12-3 8-13c1-1 2-2 4-1l4 2-2 4 4 2 2-4 4 2-2 4 4 2 2-3c4 3 6 7 10 8l2 1c2 1 3 3 3 5v2H3z"/><path d="M3 47h58v3c0 2-1 3-3 3H6c-2 0-3-1-3-3z"/></svg></div><div><h3>Sneakers</h3><p>Paires de marque, toutes tailles</p></div></div>
+ <div class="card"><div class="ico"><svg viewBox="0 0 64 64"><path d="M6 44c0-6 3-10 8-12l10-4c2-1 4-3 5-5l2-3h10l1 4c1 4 5 7 9 8l5 1c3 1 5 4 5 8v3H6z"/><rect x="6" y="47" width="55" height="5" rx="2"/><rect x="12" y="52" width="10" height="4"/><rect x="46" y="52" width="10" height="4"/></svg></div><div><h3>Chaussures fermées</h3><p>Classe, ville &amp; cérémonie</p></div></div>
+ <div class="card"><div class="ico"><svg viewBox="0 0 64 64"><path d="M8 42c0-3 2-5 5-5h40c3 0 5 2 5 5v4c0 2-2 4-4 4H12c-2 0-4-2-4-4z"/><path d="M14 37c0-8 6-15 18-15s18 7 18 15z"/></svg></div><div><h3>Claquettes</h3><p>Confort au quotidien</p></div></div>
+</div>
+<div class="hint">Envoie ta <b>pointure</b>,<br>on te trouve ta paire ! 👟</div>
+<div class="band">
+ <div class="phone"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></div>
+ <div class="cta"><small>Commande maintenant</small><strong>05 84 76 95 39</strong><em>Appel &amp; WhatsApp</em></div>
+</div>
+</body></html>
