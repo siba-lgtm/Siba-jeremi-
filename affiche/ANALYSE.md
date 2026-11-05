@@ -28,3 +28,12 @@ Quand les photos des articles arrivent : une **2e affiche « catalogue »** (gri
 
 ## Modifier l'affiche
 Ouvrir `affiche.html` dans un navigateur, ou relancer : `node shot.js affiche-paires-de-marque.png 2` (dans ce dossier).
+
+## Les 4 styles d'affiches qui marchent le mieux (dossier `modeles/`)
+1. **Hero produit** (`1-hero-produit.png`) : une seule paire en très gros, inclinée, avec ombre, mot géant en contour derrière (« NEW »), pastille prix, pointures. Idéal pour mettre en avant une paire phare.
+2. **Catalogue grille** (`2-catalogue.png`) : 6 paires, nom + prix sur chaque carte. Le format le plus vendeur sur WhatsApp, le client choisit directement.
+3. **Vendeur + paires** (`3-vendeur-et-paires.png`) : le vendeur au centre, les paires qui flottent autour. Construit la confiance et la marque perso.
+4. **Statut WhatsApp 9:16** (`4-statut-whatsapp.png`) : une paire par statut, tampon « DISPONIBLE », pointures, prix énorme. À poster tous les jours.
+
+Les chaussures sont dessinées en attendant les vraies photos ; les noms et prix sont des exemples à remplacer.
+Rendu : `node rendu.js 2` dans `modeles/`.

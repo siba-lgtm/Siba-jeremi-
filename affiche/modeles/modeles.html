@@ -1,0 +1,95 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter Display","DejaVu Sans",sans-serif;color:#fff;overflow:hidden;position:relative}
+.p{position:absolute;inset:0;overflow:hidden}
+.num{font-weight:900;letter-spacing:-2px;line-height:1}
+.shadow{filter:drop-shadow(0 30px 25px rgba(0,0,0,.45))}
+.chip{display:inline-block;padding:8px 16px;border-radius:999px;font-weight:800;font-size:22px}
+</style></head><body><div id="root"></div>
+<script>
+const PHONE="05 84 76 95 39";
+const tel='<svg viewBox="0 0 24 24" width="100%" height="100%"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg>';
+// chaussures dessinées (à remplacer par les vraies photos)
+function sneaker(up,acc,sole="#f4f4f4"){return `<svg viewBox="0 0 300 150" width="100%" height="100%">
+<path d="M18 112h270v8c0 9-6 14-15 14H34c-10 0-16-6-16-14z" fill="${acc}" opacity=".9"/>
+<path d="M20 96h268l2 14c0 6-4 10-10 10H30c-7 0-11-4-11-10z" fill="${sole}"/>
+<path d="M24 98l2-34c1-14 10-20 22-21l22-3c10-12 24-14 40-8l10 4c22 22 52 32 86 38l40 6c26 4 40 14 42 18z" fill="${up}"/>
+<path d="M24 98l2-34c1-14 10-20 22-21l10-1-4 56z" fill="${acc}"/>
+<path d="M90 98c30-30 80-40 130-36l-6 12c-40 0-80 10-104 24z" fill="${acc}" opacity=".85"/>
+<path d="M232 76c26 4 50 12 56 22H220c0-10 4-18 12-22z" fill="${sole}" opacity=".35"/>
+<g stroke="${sole}" stroke-width="5" stroke-linecap="round"><path d="M122 40l-6 10M138 48l-6 10M154 55l-6 10M170 61l-6 10"/></g>
+<circle cx="44" cy="62" r="5" fill="${sole}"/></svg>`}
+function derby(up,sole="#2a1a10"){return `<svg viewBox="0 0 300 150" width="100%" height="100%">
+<path d="M22 112h264v6c0 6-4 10-10 10H40c-10 0-18-6-18-16z" fill="${sole}"/>
+<rect x="22" y="112" width="44" height="22" rx="4" fill="${sole}"/>
+<path d="M26 112l2-40c1-12 8-18 20-18h50c20 6 40 22 70 30l60 10c34 6 54 12 58 18z" fill="${up}"/>
+<path d="M98 54c20 6 40 22 70 30l-20 6c-24-6-44-18-58-30z" fill="#000" opacity=".25"/>
+<path d="M200 96c30 2 60 8 86 16H196z" fill="#fff" opacity=".12"/>
+<g stroke="#ddd" stroke-width="3" stroke-linecap="round"><path d="M112 62l10 8M124 68l10 8M136 74l10 8"/></g></svg>`}
+function slide(strap,sole="#111"){return `<svg viewBox="0 0 300 150" width="100%" height="100%">
+<path d="M18 104c0-6 4-10 10-10h246c8 0 12 4 12 10v10c0 6-4 10-10 10H28c-6 0-10-4-10-10z" fill="${sole}"/>
+<path d="M24 96h256" stroke="#fff" stroke-opacity=".25" stroke-width="3"/>
+<path d="M120 96c4-36 26-56 64-56s58 22 64 56z" fill="${strap}"/>
+<path d="M148 72h76" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".9"/></svg>`}
+const S=[sneaker("#ffffff","#ff7a00"),sneaker("#1b1b1b","#e9e9e9","#fff"),sneaker("#f2e6d0","#7a4e2d"),derby("#3b2314"),derby("#111111","#111"),slide("#111","#e9e9e9"),slide("#ff7a00")];
+const V=new URLSearchParams(location.search).get("v")||"1";
+const R=document.getElementById("root");
+
+// 1) HERO PRODUIT : une paire en vedette, prix, texte géant derrière
+if(V=="1"){document.body.style.cssText+="width:1080px;height:1350px;background:#f3efe8";R.innerHTML=`
+<div class="p" style="background:radial-gradient(circle at 50% 45%,#fff 0,#f3efe8 60%)">
+<div style="position:absolute;top:60px;left:0;width:100%;text-align:center;font-weight:900;font-size:300px;letter-spacing:-12px;color:transparent;-webkit-text-stroke:3px #ff7a00;opacity:.55;line-height:1">NEW</div>
+<div style="position:absolute;left:60px;top:70px;color:#111;font-weight:900;font-size:26px;letter-spacing:6px">PAIRES DE MARQUE</div>
+<div class="shadow" style="position:absolute;left:90px;top:330px;width:900px;height:450px;transform:rotate(-14deg)">${S[0]}</div>
+<div style="position:absolute;right:70px;top:310px;width:220px;height:220px;border-radius:50%;background:#111;display:grid;place-items:center;text-align:center;transform:rotate(10deg)"><div><div style="font-size:24px;font-weight:700;color:#ff8a1f">SEULEMENT</div><div class="num" style="font-size:66px">25 000</div><div style="font-size:26px;font-weight:800">FCFA</div></div></div>
+<div style="position:absolute;left:60px;top:860px;color:#111"><div style="font-weight:900;font-size:92px;letter-spacing:-3px;line-height:.95">STREET<br><span style="color:#ff7a00">RUNNER</span></div>
+<div style="margin-top:22px;display:flex;gap:10px">${[39,40,41,42,43,44].map(t=>`<span class="chip" style="background:#111;color:#fff">${t}</span>`).join("")}</div></div>
+<div style="position:absolute;right:0;bottom:150px;width:330px;height:420px;background:url(crop.jpg) center 8%/cover;-webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent);border-radius:200px 0 0 0"></div>
+<div style="position:absolute;left:0;bottom:0;width:100%;height:150px;background:#111;display:flex;align-items:center;gap:26px;padding:0 60px">
+<div style="width:86px;height:86px;border-radius:50%;background:#ff7a00;color:#111;padding:20px">${tel}</div>
+<div><div style="font-weight:800;font-size:22px;letter-spacing:4px;color:#ff8a1f">COMMANDE / WHATSAPP</div><div class="num" style="font-size:72px">${PHONE}</div></div></div></div>`}
+
+// 2) CATALOGUE GRILLE : 6 paires avec prix (le format le plus vendeur sur WhatsApp)
+if(V=="2"){document.body.style.cssText+="width:1080px;height:1350px;background:#0d0d0d";
+const items=[[0,"Street Runner","25 000"],[1,"Black Classic","22 000"],[2,"Desert Low","27 000"],[3,"Derby Cuir","30 000"],[4,"Richelieu Noir","32 000"],[6,"Claquette Orange","8 000"]];
+R.innerHTML=`<div class="p">
+<div style="position:absolute;left:60px;top:50px;width:120px;height:120px;border-radius:50%;background:url(crop.jpg) center 6%/180%;border:5px solid #ff7a00"></div>
+<div style="position:absolute;left:205px;top:58px"><div style="font-weight:900;font-size:62px;letter-spacing:-2px;line-height:1">CATALOGUE <span style="color:#ff7a00">DISPO</span></div><div style="font-size:26px;color:#bbb;margin-top:8px">Sneakers · Chaussures fermées · Claquettes</div></div>
+<div style="position:absolute;left:60px;top:210px;display:grid;grid-template-columns:repeat(3,300px);gap:20px">
+${items.map(([i,n,p])=>`<div style="height:400px;border-radius:26px;background:#1c1c1c;position:relative;overflow:hidden">
+<div style="position:absolute;inset:0 0 auto 0;height:250px;background:radial-gradient(circle at 50% 55%,#ffffff,#e9e3da 75%)"></div>
+<div class="shadow" style="position:absolute;left:10px;top:60px;width:280px;height:140px;transform:rotate(-8deg)">${S[i]}</div>
+<div style="position:absolute;left:22px;bottom:84px;font-weight:800;font-size:28px">${n}</div>
+<div style="position:absolute;left:22px;bottom:26px;background:#ff7a00;color:#111;border-radius:12px;padding:6px 14px;font-weight:900;font-size:32px">${p} F</div></div>`).join("")}</div>
+<div style="position:absolute;left:60px;bottom:50px;right:60px;height:170px;border-radius:30px;background:#ff7a00;color:#111;display:flex;align-items:center;gap:26px;padding:0 36px">
+<div style="width:100px;height:100px;border-radius:50%;background:#111;color:#ff7a00;padding:24px">${tel}</div>
+<div><div style="font-weight:900;font-size:24px;letter-spacing:4px">PASSE TA COMMANDE</div><div class="num" style="font-size:84px">${PHONE}</div></div></div></div>`}
+
+// 3) VENDEUR + PAIRES : le vendeur au centre, paires qui "flottent" autour
+if(V=="3"){document.body.style.cssText+="width:1080px;height:1350px;background:#ff7a00";R.innerHTML=`
+<div class="p" style="background:linear-gradient(160deg,#ff8a1f,#e85d00)">
+<div style="position:absolute;top:40px;left:0;width:100%;text-align:center;font-weight:900;font-size:150px;letter-spacing:-6px;line-height:.85;color:#111">LA PAIRE<br><span style="color:#fff">QU'IL TE FAUT</span></div>
+<div style="position:absolute;left:250px;top:330px;width:580px;height:800px;background:url(crop.jpg) center top/cover;-webkit-mask-image:linear-gradient(to bottom,#000 75%,transparent);border-radius:300px 300px 0 0;border:0"></div>
+<div class="shadow" style="position:absolute;left:-30px;top:400px;width:380px;height:190px;transform:rotate(-18deg)">${S[1]}</div>
+<div class="shadow" style="position:absolute;right:-30px;top:470px;width:380px;height:190px;transform:rotate(16deg) scaleX(-1)">${S[2]}</div>
+<div class="shadow" style="position:absolute;left:10px;top:760px;width:330px;height:165px;transform:rotate(10deg)">${S[3]}</div>
+<div class="shadow" style="position:absolute;right:10px;top:800px;width:300px;height:150px;transform:rotate(-10deg)">${S[5]}</div>
+<div style="position:absolute;left:0;bottom:0;width:100%;height:220px;background:#111;text-align:center;padding-top:30px">
+<div style="font-weight:800;font-size:26px;letter-spacing:6px;color:#ff8a1f">SNEAKERS · FERMÉES · CLAQUETTES</div>
+<div class="num" style="font-size:110px;margin-top:10px">${PHONE}</div></div></div>`}
+
+// 4) STATUT WHATSAPP / STORY 9:16 : une paire, "DISPONIBLE", pointures
+if(V=="4"){document.body.style.cssText+="width:1080px;height:1920px;background:#111";R.innerHTML=`
+<div class="p">
+<div style="position:absolute;inset:0 0 auto 0;height:1100px;background:#f3efe8"></div>
+<div style="position:absolute;left:60px;top:90px;color:#111;font-weight:900;font-size:34px;letter-spacing:8px">ARRIVAGE DU JOUR</div>
+<div style="position:absolute;left:50px;top:150px;color:#111;font-weight:900;font-size:170px;letter-spacing:-7px;line-height:.85">BLACK<br><span style="color:#ff7a00">CLASSIC</span></div>
+<div class="shadow" style="position:absolute;left:40px;top:520px;width:1000px;height:500px;transform:rotate(-12deg)">${S[1]}</div>
+<div style="position:absolute;right:60px;top:180px;transform:rotate(8deg);border:6px solid #1a9e49;color:#1a9e49;font-weight:900;font-size:46px;padding:10px 22px;border-radius:14px;background:#fff">DISPONIBLE</div>
+<div style="position:absolute;left:60px;top:1150px"><div style="font-size:30px;color:#aaa;font-weight:700;letter-spacing:4px">POINTURES</div>
+<div style="margin-top:16px;display:flex;gap:14px">${[40,41,42,43,44,45].map(t=>`<span class="chip" style="font-size:34px;padding:12px 22px;border:3px solid #ff7a00">${t}</span>`).join("")}</div>
+<div style="margin-top:46px;font-size:30px;color:#aaa;font-weight:700;letter-spacing:4px">PRIX</div><div class="num" style="font-size:150px;color:#ff7a00">22 000 F</div></div>
+<div style="position:absolute;left:60px;right:60px;bottom:90px;height:220px;border-radius:40px;background:#ff7a00;color:#111;display:flex;align-items:center;gap:30px;padding:0 40px">
+<div style="width:120px;height:120px;border-radius:50%;background:#111;color:#ff7a00;padding:28px">${tel}</div>
+<div><div style="font-weight:900;font-size:28px;letter-spacing:4px">ÉCRIS-MOI</div><div class="num" style="font-size:96px">${PHONE}</div></div></div></div>`}
+</script></body></html>
