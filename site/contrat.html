@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contrat d'accompagnement · Siba Cash Empire</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { --ink: #1b1530; --muted: #5d5872; --accent: #6d28d9; --line: #e3dff0; --soft: #f6f3fd; --ok: #0f9d58; --err: #c62828; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ebe8f3; color: var(--ink); font: 15px/1.55 "Segoe UI", Arial, sans-serif; }
+  .page { max-width: 820px; margin: 24px auto; background: #fff; padding: 48px 56px; box-shadow: 0 6px 30px rgba(40, 20, 90, .12); border-radius: 6px; }
+  header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; border-bottom: 3px solid var(--accent); padding-bottom: 16px; margin-bottom: 24px; }
+  header h1 { font-size: 22px; margin: 0 0 4px; }
+  header .ref { text-align: right; color: var(--muted); font-size: 13px; }
+  .brand { color: var(--accent); font-weight: 700; letter-spacing: .3px; }
+  h2 { font-size: 16px; color: var(--accent); margin: 26px 0 8px; text-transform: uppercase; letter-spacing: .5px; }
+  p, li { margin: 6px 0; }
+  ol, ul { padding-left: 22px; }
+  .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .box { background: var(--soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .box b { display: block; margin-bottom: 4px; }
+  .fill { display: inline-block; min-width: 120px; border-bottom: 1px dotted var(--muted); font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+  th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
+  th { background: var(--accent); color: #fff; font-weight: 600; }
+  .sign { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 10px; }
+  .sigbox { border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-height: 150px; }
+  .sigimg { display: block; max-width: 100%; height: 100px; object-fit: contain; margin-top: 8px; }
+  .coachsig { font: italic 30px/1.2 "Brush Script MT", "Segoe Script", cursive; color: #2b2160; margin-top: 18px; }
+  .check { margin: 8px 0; display: flex; gap: 8px; align-items: flex-start; }
+  .check input { margin-top: 4px; width: 18px; height: 18px; flex: none; }
+  .small { color: var(--muted); font-size: 12.5px; }
+  footer { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; text-align: center; }
+  /* formulaire de signature */
+  .form { border: 2px solid var(--accent); border-radius: 10px; padding: 16px; margin-top: 12px; background: #fbfaff; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+  label.f { display: block; font-weight: 600; font-size: 13.5px; }
+  label.f input, label.f select { width: 100%; margin-top: 4px; padding: 10px 12px; border: 1px solid #cfc8e6; border-radius: 8px; font: inherit; }
+  canvas { width: 100%; height: 170px; border: 2px dashed #b9b0d8; border-radius: 10px; background: #fff; touch-action: none; display: block; margin-top: 6px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .btn { border: 0; border-radius: 10px; padding: 12px 18px; font: 600 15px/1 inherit; cursor: pointer; background: #ece8f8; color: var(--ink); }
+  .btn.main { background: var(--accent); color: #fff; width: 100%; padding: 15px; font-size: 16px; margin-top: 12px; }
+  .btn:disabled { opacity: .6; cursor: default; }
+  .msg { margin-top: 10px; padding: 10px 12px; border-radius: 8px; background: #fff3f3; color: var(--err); display: none; }
+  .msg.ok { background: #effaf3; color: var(--ok); }
+  .bar { position: sticky; top: 0; z-index: 2; background: #1b1530; color: #fff; padding: 10px 16px; display: none; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .bar .btn { padding: 9px 14px; }
+  .proof { margin-top: 12px; font-size: 12px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 8px; }
+  [hidden] { display: none !important; }
+  @media (max-width: 640px) { .page { padding: 24px 18px; margin: 0; border-radius: 0; } .parties, .sign, .grid2 { grid-template-columns: 1fr; } header { flex-direction: column; } header .ref { text-align: left; } }
+  @media print { body { background: #fff; } .page { box-shadow: none; margin: 0; max-width: none; padding: 0; } .bar, .form, .noprint { display: none !important; } h2 { break-after: avoid; } .sign { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="bar" id="bar"><button class="btn" type="button" id="print">🖨️ Imprimer / Enregistrer en PDF</button><a class='btn' href='/app' id='back'>Retour à l'espace membre</a></div>
+<div class="page">
+  <header>
+    <div>
+      <div class="brand">SIBA CASH EMPIRE</div>
+      <h1>Contrat d'accompagnement avec paiement en 2 fois</h1>
+      <div class="small">Accompagnement TikTok &amp; YouTube faceless</div>
+    </div>
+    <div class="ref">Contrat n° <span class="fill" data-f="number">à la signature</span><br>Signé le <span class="fill" data-f="signedDate">à la signature</span></div>
+  </header>
+
+  <h2>1. Les parties</h2>
+  <div class="parties">
+    <div class="box"><b>Le coach</b>Siba Kouadio, pour Siba Cash Empire<br>Contact : kouadiosiba23@gmail.com<br>Site : siba-cash-empire.netlify.app</div>
+    <div class="box"><b>Le membre</b>Nom et prénom : <span class="fill" data-f="full_name">…</span><br>E-mail (Gmail du compte) : <span class="fill" data-f="email">…</span><br>Téléphone / WhatsApp : <span class="fill" data-f="phone">…</span><br>Pays de résidence : <span class="fill" data-f="country">…</span></div>
+  </div>
+
+  <h2>2. Ce que le membre reçoit</h2>
+  <ul>
+    <li>Un accès à l'espace membre de Siba Cash Empire : tous les modules vidéo, les mises à jour et les nouveaux modules, <b>à vie</b>.</li>
+    <li>La communauté des membres et la messagerie privée.</li>
+    <li>Des retours sur ses vidéos et sur son compte, dans la messagerie privée, sous 48 heures (hors week-end et jours fériés).</li>
+    <li>Les lives et appels de groupe organisés pendant la durée de l'accompagnement.</li>
+  </ul>
+
+  <h2>3. Le prix et le paiement en 2 fois</h2>
+  <table>
+    <tr><th>Versement</th><th>Montant</th><th>Date limite</th></tr>
+    <tr><td>1er versement (code <span data-f="code">MOITIE</span>)</td><td><b><span data-f="first">32 500</span> FCFA</b></td><td>Le jour de la signature</td></tr>
+    <tr><td>2e versement</td><td><b><span data-f="second">32 500</span> FCFA</b></td><td><span class="fill" data-f="dueDate"><span data-f="days">45</span> jours après la signature</span></td></tr>
+    <tr><td><b>Prix total</b></td><td><b><span data-f="total">65 000</span> FCFA</b></td><td></td></tr>
+  </table>
+  <ul>
+    <li>L'accès complet s'ouvre dès le 1er versement.</li>
+    <li>Le 2e versement apparaît dans l'espace membre comme « en attente ». Le membre reçoit des messages de rappel dans sa messagerie privée : à la réception du 1er versement, <b>14 jours</b> puis <b>21 jours</b> après, et le jour de la date limite.</li>
+    <li><b>Le jour de la date limite</b>, le lien pour payer le 2e versement apparaît sur la page d'accueil de l'espace membre.</li>
+  </ul>
+
+  <h2>4. Si le 2e versement n'est pas payé</h2>
+  <ol>
+    <li><b>Suspension automatique :</b> le lendemain de la date limite, si le 2e versement n'est pas payé, l'accès à l'espace membre est suspendu. Il revient automatiquement dès que le 2e versement est payé.</li>
+    <li><b>Mise en demeure :</b> si le paiement n'est toujours pas fait 15 jours après la date limite, le coach envoie au membre une mise en demeure écrite de payer.</li>
+    <li><b>Recouvrement :</b> la somme restante reste due. Sans paiement après la mise en demeure, le coach pourra engager une procédure de recouvrement amiable, puis judiciaire (par exemple une procédure d'injonction de payer devant le tribunal compétent), pour obtenir le paiement de la somme due, augmentée des frais de recouvrement autorisés par la loi.</li>
+    <li>Le 1er versement reste acquis au coach : le membre a déjà reçu l'accès complet à la formation.</li>
+  </ol>
+
+  <h2>5. Les engagements du membre</h2>
+  <p>Pour que l'accompagnement donne des résultats, le membre s'engage à :</p>
+  <ol>
+    <li><b>Publier 3 vidéos par jour</b>, au moins 5 jours sur 7, pendant les 90 premiers jours, sur le compte et la niche choisis avec le coach.</li>
+    <li>Remplir sa fiche « Ma niche » dans l'espace membre dans les 7 jours qui suivent la signature.</li>
+    <li>Suivre les modules dans l'ordre et appliquer chaque leçon avant de passer à la suivante.</li>
+    <li>Envoyer chaque semaine une capture de ses statistiques (vues, abonnés) dans la messagerie privée, pour que le coach puisse le corriger.</li>
+    <li>Respecter les règles de TikTok et de YouTube : pas de repost de vidéos d'autres créateurs, pas de contenu interdit.</li>
+    <li>Garder ses accès pour lui seul : ne pas partager son compte, ne pas copier, filmer, revendre ou diffuser les vidéos et documents de la formation.</li>
+    <li>Rester respectueux avec les autres membres et avec le coach dans la communauté.</li>
+  </ol>
+
+  <h2>6. Les engagements du coach</h2>
+  <ol>
+    <li>Donner accès à tous les contenus promis et aux nouveaux modules, sans supplément.</li>
+    <li>Répondre aux messages privés sous 48 heures (hors week-end et jours fériés).</li>
+    <li>Donner des retours concrets sur les vidéos et les statistiques envoyées par le membre.</li>
+    <li><b>Bonus de régularité :</b> si le membre publie ses 3 vidéos par jour pendant 60 jours (preuves envoyées chaque semaine) et n'a pas encore atteint 10 000 abonnés, le coach lui offre un audit complet de son compte en appel privé et prolonge son suivi personnel de 60 jours.</li>
+  </ol>
+
+  <h2>7. Ce qui n'est pas garanti</h2>
+  <p>Le coach s'engage à transmettre une méthode et à accompagner le membre (obligation de moyens). Les résultats (abonnés, vues, revenus) dépendent du travail, de la régularité du membre et des plateformes : <b>aucun revenu n'est garanti</b>.</p>
+
+  <h2>8. Droit de rétractation</h2>
+  <p>Le membre demande à recevoir l'accès à la formation immédiatement, avant la fin du délai de rétractation de 14 jours, et reconnaît qu'il perd son droit de rétractation dès que l'accès aux contenus est ouvert.</p>
+
+  <h2>9. Résiliation</h2>
+  <p>En cas de partage de ses accès, de revente ou de diffusion des contenus de la formation, ou de comportement insultant dans la communauté, le coach peut fermer l'accès du membre après un avertissement écrit resté sans effet, sans remboursement. Les sommes restantes restent dues.</p>
+
+  <h2>10. Litiges</h2>
+  <p>Les parties cherchent d'abord une solution à l'amiable. À défaut, le litige est porté devant le tribunal compétent, dans le respect des règles qui protègent le consommateur dans son pays de résidence.</p>
+
+  <h2>11. Signatures</h2>
+
+  <!-- Formulaire : seulement quand le membre signe (contrat.html?code=MOITIE) -->
+  <form class="form" id="signForm" hidden novalidate>
+    <p style="margin-top:0"><b>Remplis tes informations, coche les 3 cases, signe avec ton doigt (ou la souris), puis paie ton 1er versement.</b></p>
+    <div class="grid2">
+      <label class="f">Nom et prénom<input name="full_name" autocomplete="name" maxlength="80" required></label>
+      <label class="f">Ton Gmail (celui de ton compte)<input name="email" type="email" autocomplete="email" maxlength="120" required></label>
+      <label class="f">Numéro WhatsApp (avec l'indicatif du pays)<input name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+225 07 00 00 00 00" required></label>
+      <label class="f">Pays de résidence<input name="country" autocomplete="country-name" maxlength="50" placeholder="Côte d'Ivoire, France…" required></label>
+    </div>
+    <label class="check"><input type="checkbox" name="c1"> <span>J'ai lu et j'accepte toutes les conditions de ce contrat.</span></label>
+    <label class="check"><input type="checkbox" name="c2"> <span>Je demande l'accès immédiat et je renonce à mon droit de rétractation (article 8).</span></label>
+    <label class="check"><input type="checkbox" name="c3"> <span>Je m'engage à payer le 2e versement de <span data-f="second">32 500</span> FCFA au plus tard <span data-f="days">45</span> jours après aujourd'hui, et j'accepte que mon accès soit suspendu en cas de retard (article 4).</span></label>
+    <div style="margin-top:10px"><b>Ta signature</b> <span class="small">(dessine-la dans le cadre)</span></div>
+    <canvas id="pad" aria-label="Zone de signature"></canvas>
+    <div class="row" style="margin-top:6px"><button class="btn" type="button" id="clear">Effacer</button><span class="small">Ta signature, la date, l'heure et ton appareil sont enregistrés comme preuve.</span></div>
+    <button class="btn main" type="submit" id="go">Signer et payer <span data-f="first">32 500</span> FCFA</button>
+    <div class="msg" id="msg"></div>
+  </form>
+
+  <!-- Signatures (contrat signé, ou modèle vierge) -->
+  <div class="sign" id="sigs">
+    <div class="sigbox"><b>Le membre</b><div class="small"><span data-f="full_name">Nom</span>, « Lu et approuvé » le <span data-f="signedDate">…</span></div><img class="sigimg" id="sigImg" alt="Signature du membre" hidden></div>
+    <div class="sigbox"><b>Le coach</b><div class="small">Siba Kouadio, pour Siba Cash Empire</div><div class="coachsig">Siba Kouadio</div></div>
+  </div>
+  <div class="proof" id="proof" hidden></div>
+
+  <footer>Siba Cash Empire · siba-cash-empire.netlify.app</footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="assets/demo.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/contrat.js"></script>
+</body>
+</html>

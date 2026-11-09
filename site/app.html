@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Espace membre</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div id="demo-bar" class="demo-bar hidden"></div>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <a class="logo" href="#/accueil"><span class="logo-mark">▶</span><span data-site-name></span></a>
+      <a class="nav-link" data-nav="accueil" href="#/accueil"><span class="ico">🏠</span>Accueil</a>
+      <a class="nav-link" data-nav="formation" href="#/formation"><span class="ico">🎬</span>Formation</a>
+      <a class="nav-link" data-nav="communaute" href="#/communaute"><span class="ico">💬</span>Communauté</a>
+      <a class="nav-link" data-nav="coachs" href="#/coachs"><span class="ico">✉️</span><span data-coach-label>Messages privés</span></a>
+      <a class="nav-link" data-nav="calendrier" href="#/calendrier"><span class="ico">📅</span>Lives</a>
+      <a class="nav-link hidden" data-nav="admin" href="#/admin"><span class="ico">⚙️</span>Admin</a>
+      <div class="spacer"></div>
+      <div class="me" id="me"></div>
+    </aside>
+
+    <main class="main">
+      <div class="mobile-top">
+        <a class='logo' href='/'><span class="logo-mark">▶</span><span data-site-name></span></a>
+        <button class="btn btn-sm" data-logout>Déconnexion</button>
+      </div>
+      <div id="view"><div class="loading">Chargement…</div></div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="assets/demo.js"></script>
+  <script src="assets/common.js"></script>
+  <script src="assets/player.js"></script>
+  <script src="assets/views.js"></script>
+  <script src="assets/admin.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

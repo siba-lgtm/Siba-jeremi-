@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Siba Cash Empire</title>
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <meta name="description" content="L'accompagnement pour créer des chaînes TikTok et YouTube faceless rentables, sans montrer ton visage : vidéos, coachs, communauté et lives.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/landing.css">
+</head>
+<body class="l-body">
+  <div id="demo-note" class="config-warning hidden">
+    <strong>Mode démo</strong> · Tout fonctionne avec des données d'exemple. Connexion Google et paiement réels après branchement (voir README).
+  </div>
+
+  <nav class="l-nav">
+    <div class="wrap">
+      <a class="logo" href="#top"><span class="logo-mark">▶</span><span data-site-name></span></a>
+      <div class="l-links">
+        <a href="#programme">Programme</a>
+        <a href="#avantages">Avantages</a>
+        <a href="#prix">Prix</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <button class="btn btn-sm" data-login>Se connecter</button>
+    </div>
+  </nav>
+
+  <!-- 1. LA VIDÉO EN PREMIER -->
+  <header class="l-hero hero-v" id="top">
+    <div class="glow"></div>
+    <div class="wrap hero-stack">
+      <span class="eyebrow"><span class="dot"></span><span data-eyebrow></span></span>
+      <p class="watch-first">▶ Regarde cette vidéo avant tout</p>
+      <div class="vsl" id="vsl" role="button" tabindex="0" aria-label="Lire la vidéo de présentation">
+        <div class="play">▶</div><div class="label">Clique pour regarder</div>
+      </div>
+      <!-- Juste sous la vidéo : le bouton pour rejoindre -->
+      <div class="cta-row hero-cta">
+        <a class="btn btn-cta btn-xl" href="#rejoindre" data-cta></a>
+      </div>
+      <span class="trust">
+        <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+        Paiement sécurisé, puis connexion Google en 1 clic
+      </span>
+    </div>
+  </header>
+
+  <!-- 2. CASES QUI DÉFILENT : l'intérieur de l'accompagnement, puis les résultats des membres -->
+  <section class="showcase" id="apercu">
+    <div class="wrap center showcase-head">
+      <h1 id="hero-title"></h1>
+      <p class="lead" data-subtitle></p>
+    </div>
+    <div class="wrap row-head hidden" id="mq-results-head"><span class="pill pill-hot">🏆 Résultats des membres</span><span class="muted small">Clique sur une vidéo pour la regarder</span></div>
+    <div class="marquee hidden" id="mq-results" aria-label="Résultats des membres"><div class="mq-track"></div></div>
+    <div class="wrap center" style="margin-top:1.6rem"><a class="btn btn-cta" href="#rejoindre" data-cta></a></div>
+  </section>
+
+  <!-- Lecteur des vidéos de résultats -->
+  <div class="vmodal hidden" id="vmodal" role="dialog" aria-modal="true" aria-label="Vidéo"><div class="vmodal-box"><button class="vmodal-x" type="button" aria-label="Fermer">✕</button><div class="vmodal-body"></div></div></div>
+
+  <!-- 3. REJOINDRE : PAYER PUIS SE CONNECTER -->
+  <section class="l-section join" id="rejoindre">
+    <div class="wrap">
+      <h2 class="center">Rejoins l'accompagnement <span class="grad-text">en 2 étapes</span></h2>
+      <p class="sub center" style="margin-inline:auto">D'abord tu paies ton accès, ensuite tu te connectes avec le même Gmail. Ton espace s'ouvre tout de suite.</p>
+
+      <div class="steps">
+        <form class="step" id="pay-form" novalidate>
+          <div class="step-num">1</div>
+          <h3>Paie ton accès à vie</h3>
+          <div class="step-price"><span data-price></span> <small data-price-local></small></div>
+          <div class="field"><label for="pay-name">Ton nom et prénom</label><input id="pay-name" name="name" autocomplete="name" placeholder="Ex : Awa Koné" maxlength="80" required></div>
+          <div class="field"><label for="pay-email">Ton adresse Gmail</label><input id="pay-email" name="email" type="email" autocomplete="email" placeholder="tonnom@gmail.com" required></div>
+          <div class="field"><label for="pay-phone">Ton numéro WhatsApp (avec l'indicatif du pays)</label><input id="pay-phone" name="phone" type="tel" autocomplete="tel" placeholder="Ex : +225 07 00 00 00 00" maxlength="25" required></div>
+          <!-- Partie discrète : seulement pour les clients à qui le coach a donné un code (paiement en 2 fois) -->
+          <a href="#" id="promo-toggle" class="muted small" style="display:inline-block;margin:-.5rem 0 .8rem;text-decoration:none;opacity:.75">⊕ J'ai un code</a>
+          <div id="promo-box" class="hidden" style="margin-bottom:.8rem">
+            <div class="field" style="margin-bottom:.4rem"><label for="pay-code">Ton code</label>
+              <div class="row" style="flex-wrap:nowrap"><input id="pay-code" maxlength="20" placeholder="Le code reçu du coach" autocapitalize="characters" autocomplete="off"><button class="btn" type="button" id="promo-apply">Valider</button></div></div>
+            <div id="promo-msg" class="small"></div>
+            <button class="btn btn-cta hidden" style="width:100%;margin-top:.5rem" type="button" id="split-go">Continuer : signer mon contrat</button>
+          </div>
+          <p class="muted small" style="margin:0 0 1rem">Utilise le Gmail avec lequel tu te connecteras à l'étape 2.</p>
+          <button class="btn btn-cta" style="width:100%" type="submit" id="pay-submit">Payer et rejoindre</button>
+          <div class="pay-logos"><span>WAVE</span><span>ORANGE MONEY</span><span>MTN MOMO</span><span>MOOV</span><span>DJAMO</span></div>
+          <div class="pay-ok hidden" id="pay-ok"></div>
+        </form>
+
+        <div class="step" id="login-step">
+          <div class="step-num">2</div>
+          <h3>Connecte-toi avec Google</h3>
+          <p class="muted">Une fois le paiement fait, connecte-toi avec <strong>le même Gmail</strong>. Ton accès aux vidéos, à la communauté et aux coachs s'ouvre automatiquement.</p>
+          <button class="btn btn-google btn-lg" style="width:100%" data-login type="button">
+            <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+            Se connecter avec Google
+          </button>
+          <p class="muted small" style="margin:.9rem 0 0">Déjà membre ? Connecte-toi directement ici.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats"><div class="wrap" id="stats"></div></section>
+
+  <section class="l-section" id="programme">
+    <div class="wrap">
+      <h2>Le <span class="grad-text">programme</span>, module par module</h2>
+      <p class="sub">Un parcours dans l'ordre, de ta première vidéo jusqu'à la monétisation. Tu avances à ton rythme et ta progression est enregistrée.</p>
+      <div class="program" id="program"></div>
+    </div>
+  </section>
+
+  <section class="l-section" id="avantages" style="background:var(--surface);border-block:1px solid var(--border)">
+    <div class="wrap">
+      <h2>Plus que des vidéos, un vrai <span class="grad-text">accompagnement</span></h2>
+      <p class="sub">Les vidéos t'apprennent la méthode. Les coachs, la communauté et les lives t'aident à l'appliquer.</p>
+      <div class="benefits" id="benefits"></div>
+    </div>
+  </section>
+
+  <section class="l-section">
+    <div class="wrap">
+      <h2 class="center">C'est pour toi ?</h2>
+      <p class="sub center" style="margin-inline:auto">Sois honnête avec toi-même avant de rejoindre.</p>
+      <div class="fit">
+        <div class="fit-col fit-yes"><h3>C'est pour toi si…</h3><ul id="for-you"></ul></div>
+        <div class="fit-col fit-no"><h3>Ce n'est pas pour toi si…</h3><ul id="not-for-you"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="l-section" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="center">Seul ou <span class="grad-text">accompagné</span> ?</h2>
+      <p class="sub center" style="margin-inline:auto">Ce qui change quand tu n'avances plus seul.</p>
+      <div class="compare table-wrap">
+        <table>
+          <thead><tr><th>Objectif</th><th>Seul</th><th class="us" data-site-name></th></tr></thead>
+          <tbody id="compare"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="l-section hidden" id="avis" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="center">Ce que disent les <span class="grad-text">membres</span></h2>
+      <p class="sub center" style="margin-inline:auto">Leurs mots, sans retouche.</p>
+      <div class="quotes" id="quotes"></div>
+    </div>
+  </section>
+
+  <section class="l-section" id="prix" style="background:var(--surface);border-block:1px solid var(--border)">
+    <div class="wrap pricing">
+      <div>
+        <h2>Un seul paiement. <span class="grad-text">L'accès à vie.</span></h2>
+        <p class="sub" style="margin-bottom:1rem">Pas d'abonnement, pas de frais cachés. Tu paies une fois et tu gardes l'accès pour toujours, nouveaux modules compris.</p>
+        <div class="card hidden" id="price-increase" style="margin-bottom:1rem;border-color:rgba(37,244,238,.35)">
+          <div class="kicker" style="color:var(--cyan)">Le prix va évoluer</div>
+          <p style="margin:0" data-price-increase></p>
+        </div>
+        <p class="muted">Paiement sécurisé par mobile money (Wave, Orange, MTN, Moov, Djamo). Ton accès s'ouvre automatiquement juste après.</p>
+      </div>
+      <div class="price-box">
+        <span class="badge">Accès complet</span>
+        <div class="price"><span data-price></span><span class="old hidden" id="old-price"></span></div>
+        <div class="muted small" data-price-note></div>
+        <div class="countdown hidden" id="countdown"></div>
+        <ul class="included">
+          <li>Tous les modules faceless + le bonus face caméra</li>
+          <li>La communauté privée de créateurs</li>
+          <li>Les messages privés avec les coachs</li>
+          <li>Les lives chaque semaine</li>
+          <li>Les futurs modules inclus</li>
+        </ul>
+        <a class="btn btn-cta" style="width:100%" href="#rejoindre" data-cta></a>
+        <div class="pay-logos"><span>WAVE</span><span>ORANGE MONEY</span><span>MTN MOMO</span><span>MOOV MONEY</span><span>DJAMO</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="l-section" id="faq">
+    <div class="wrap">
+      <h2 class="center">Questions fréquentes</h2>
+      <p class="sub center" style="margin-inline:auto">Une autre question ? Écris-nous à <strong data-contact></strong></p>
+      <div class="faq" id="faq-list"></div>
+    </div>
+  </section>
+
+  <section class="l-section" style="padding-top:0">
+    <div class="wrap">
+      <div class="final">
+        <div class="glow"></div>
+        <div style="position:relative">
+          <h2>Ta prochaine vidéo peut être <span class="grad-text">celle qui perce</span>.</h2>
+          <p class="sub" style="margin-inline:auto">Rejoins l'accompagnement aujourd'hui et publie ta première vidéo faceless avec la méthode cette semaine.</p>
+          <div class="cta-row"><a class="btn btn-cta" href="#rejoindre" data-cta></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="l-footer">
+    <div class="wrap">
+      <div>
+        <div class="logo" style="margin-bottom:.4rem"><span class="logo-mark">▶</span><span data-site-name></span></div>
+        © <span id="year"></span> · <span data-contact></span>
+      </div>
+      <div style="display:flex;gap:1.2rem;flex-wrap:wrap">
+        <a href='/legal#mentions'>Mentions légales</a>
+        <a href='/legal#cgv'>CGV</a>
+        <a href='/legal#confidentialite'>Confidentialité</a>
+      </div>
+      <div class="socials" id="socials"></div>
+    </div>
+  </footer>
+
+  <a class="wa hidden" id="wa" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.2.3-.1.5.2.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.2.1.4.1.5-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.6-.1 1.2Z"/></svg>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="assets/demo.js"></script>
+  <script src="assets/common.js"></script>
+  <script src="assets/landing.js"></script>
+</body>
+</html>

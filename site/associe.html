@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contrat d'associé · Siba Cash Empire</title>
+<meta name="robots" content="noindex">
+<style>
+  :root { --ink: #1b1530; --muted: #5d5872; --accent: #6d28d9; --line: #e3dff0; --soft: #f6f3fd; --ok: #0f9d58; --err: #c62828; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ebe8f3; color: var(--ink); font: 15px/1.55 "Segoe UI", Arial, sans-serif; }
+  .page { max-width: 820px; margin: 24px auto; background: #fff; padding: 48px 56px; box-shadow: 0 6px 30px rgba(40, 20, 90, .12); border-radius: 6px; }
+  header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; border-bottom: 3px solid var(--accent); padding-bottom: 16px; margin-bottom: 24px; }
+  header h1 { font-size: 22px; margin: 0 0 4px; }
+  header .ref { text-align: right; color: var(--muted); font-size: 13px; }
+  .brand { color: var(--accent); font-weight: 700; letter-spacing: .3px; }
+  h2 { font-size: 16px; color: var(--accent); margin: 26px 0 8px; text-transform: uppercase; letter-spacing: .5px; }
+  p, li { margin: 6px 0; }
+  ol, ul { padding-left: 22px; }
+  .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .box { background: var(--soft); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .box b { display: block; margin-bottom: 4px; }
+  .fill { display: inline-block; min-width: 120px; border-bottom: 1px dotted var(--muted); font-weight: 600; }
+  .split { display: flex; border-radius: 10px; overflow: hidden; margin: 10px 0; font-weight: 700; color: #fff; }
+  .split div { padding: 14px 16px; text-align: center; min-width: 70px; }
+  .split .s { background: var(--accent); } .split .a { background: #2b2160; }
+  .split small { display: block; font-weight: 500; opacity: .85; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+  th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; }
+  th { background: var(--accent); color: #fff; font-weight: 600; }
+  .sign { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 10px; }
+  .sigbox { border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-height: 150px; }
+  .sigimg { display: block; max-width: 100%; height: 100px; object-fit: contain; margin-top: 8px; }
+  .coachsig { font: italic 30px/1.2 "Brush Script MT", "Segoe Script", cursive; color: #2b2160; margin-top: 18px; }
+  .check { margin: 8px 0; display: flex; gap: 8px; align-items: flex-start; }
+  .check input { margin-top: 4px; width: 18px; height: 18px; flex: none; }
+  .small { color: var(--muted); font-size: 12.5px; }
+  footer { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; text-align: center; }
+  .form { border: 2px solid var(--accent); border-radius: 10px; padding: 16px; margin-top: 12px; background: #fbfaff; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+  label.f { display: block; font-weight: 600; font-size: 13.5px; }
+  label.f input { width: 100%; margin-top: 4px; padding: 10px 12px; border: 1px solid #cfc8e6; border-radius: 8px; font: inherit; }
+  canvas { width: 100%; height: 170px; border: 2px dashed #b9b0d8; border-radius: 10px; background: #fff; touch-action: none; display: block; margin-top: 6px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .btn { border: 0; border-radius: 10px; padding: 12px 18px; font: 600 15px/1 inherit; cursor: pointer; background: #ece8f8; color: var(--ink); text-decoration: none; display: inline-block; }
+  .btn.main { background: var(--accent); color: #fff; width: 100%; padding: 15px; font-size: 16px; margin-top: 12px; text-align: center; }
+  .btn:disabled { opacity: .6; cursor: default; }
+  .msg { margin-top: 10px; padding: 10px 12px; border-radius: 8px; background: #fff3f3; color: var(--err); display: none; }
+  .msg.ok { background: #effaf3; color: var(--ok); }
+  .bar { position: sticky; top: 0; z-index: 2; background: #1b1530; color: #fff; padding: 10px 16px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .bar .btn { padding: 9px 14px; }
+  .proof { margin-top: 12px; font-size: 12px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 8px; }
+  .done { border: 2px solid var(--ok); background: #effaf3; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
+  [hidden] { display: none !important; }
+  @media (max-width: 640px) { .page { padding: 24px 18px; margin: 0; border-radius: 0; } .parties, .sign, .grid2 { grid-template-columns: 1fr; } header { flex-direction: column; } header .ref { text-align: left; } }
+  @media print { body { background: #fff; } .page { box-shadow: none; margin: 0; max-width: none; padding: 0; } .bar, .form, .noprint { display: none !important; } h2 { break-after: avoid; } .sign { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="bar noprint"><button class="btn" type="button" id="print">🖨️ Imprimer / Enregistrer en PDF</button><a class='btn' href='/app'>Mon espace membre</a></div>
+<div class="page">
+  <p class="msg" id="err"></p>
+  <div id="doc" hidden>
+  <header>
+    <div>
+      <div class="brand">SIBA CASH EMPIRE</div>
+      <h1>Contrat d'association TikTok</h1>
+      <div class="small">Accompagnement offert + publication par l'associé, revenus partagés</div>
+    </div>
+    <div class="ref">Contrat n° <span class="fill" data-f="num"></span><br>Signé le <span class="fill" data-f="signedDate">à la signature</span></div>
+  </header>
+
+  <p class="done noprint" id="leftNote" hidden><b>Contrat terminé le <span data-f="leftDate"></span>.</b> Depuis cette date, chaque compte du contrat est partagé à 50 % / 50 % (article 8).</p>
+
+  <h2>1. Les parties</h2>
+  <div class="parties">
+    <div class="box"><b>Le stratège</b>Siba Kouadio, pour Siba Cash Empire<br>Contact : kouadiosiba23@gmail.com<br>Site : siba-cash-empire.netlify.app</div>
+    <div class="box"><b>L'associé</b>Nom et prénom : <span class="fill" data-f="nom"></span><br>Gmail : <span class="fill" data-f="email">à la signature</span><br>Téléphone / WhatsApp : <span class="fill" data-f="phone">à la signature</span><br>Pays : <span class="fill" data-f="country">à la signature</span></div>
+  </div>
+
+  <h2>2. Le principe</h2>
+  <p>Siba donne à l'associé un <b>accès gratuit à son programme d'accompagnement</b> Siba Cash Empire : sa stratégie pour faire des vues et gagner de l'argent sur TikTok (choix de la niche, idées et scripts, montage, heures de publication, lecture des statistiques) et son suivi personnel.</p>
+  <p><b>L'associé ne paie rien pour entrer.</b> En échange, il applique la stratégie, publie les vidéos, et <b>l'argent gagné par les comptes est partagé</b> selon l'article 4.</p>
+
+  <h2>3. Les comptes</h2>
+  <p>Ce contrat couvre <b><span data-f="nbComptes"></span> compte(s)</b>. Tout ce qui est écrit ici s'applique à chacun d'eux.</p>
+  <div style="overflow-x:auto"><table><thead><tr><th>N°</th><th>Nom du compte</th><th>Le compte appartient à</th></tr></thead><tbody id="acctRows"></tbody></table></div>
+  <div id="c_associe">
+    <p><b>Pour un compte qui appartient à l'associé :</b></p>
+    <ul>
+      <li>Il est à son nom et l'argent arrive sur ses moyens de paiement.</li>
+      <li>L'associé donne à Siba un accès en lecture aux statistiques et aux revenus du compte (captures d'écran ou partage d'écran à la demande).</li>
+      <li>L'associé reverse la part de Siba comme prévu à l'article 4.</li>
+    </ul>
+  </div>
+  <div id="c_siba">
+    <p><b>Pour un compte qui appartient à Siba :</b></p>
+    <ul>
+      <li>Il est à son nom et l'argent arrive sur ses moyens de paiement.</li>
+      <li>Siba donne à l'associé l'accès au compte pour publier. L'associé ne change jamais le mot de passe, l'e-mail, le numéro ni le nom du compte.</li>
+      <li>Siba reverse la part de l'associé comme prévu à l'article 4.</li>
+      <li>Quand l'associé part, il arrête de publier sur le compte et se déconnecte de tous ses appareils.</li>
+    </ul>
+  </div>
+  <p>Pour ajouter un nouveau compte au contrat, les deux se mettent d'accord par écrit (WhatsApp compris) et Siba envoie un contrat mis à jour.</p>
+
+  <h2>4. Le partage de l'argent</h2>
+  <div class="split"><div class="s" id="barS">Siba<small><span data-f="pSiba"></span> %</small></div><div class="a" id="barA"><span data-f="prenom"></span><small><span data-f="pAsso"></span> %</small></div></div>
+  <ul>
+    <li>Le partage se fait <b>compte par compte</b>, sur <b>tout l'argent gagné grâce à chaque compte</b> : programme de rémunération TikTok, cadeaux en live, partenariats avec des marques, liens d'affiliation, et revenus des mêmes vidéos publiées sur YouTube, Instagram ou Facebook.</li>
+    <li>Celui à qui appartient le compte reçoit l'argent et reverse la part de l'autre <b>dans les 7 jours</b> qui suivent chaque paiement de la plateforme ou de la marque, par Wave, Orange Money, MTN Money ou virement.</li>
+    <li>Chaque versement est accompagné d'une capture d'écran du tableau de revenus du compte, pour que les deux voient le même chiffre.</li>
+    <li>Les frais éventuels (outils, pub) ne sont retirés avant le partage que si les deux l'ont accepté par écrit (WhatsApp compris) avant la dépense.</li>
+  </ul>
+
+  <h2>5. Les engagements de l'associé</h2>
+  <ol>
+    <li><b>Publier <span data-f="videos"></span> vidéo(s) par jour sur chaque compte</b>, au moins 5 jours sur 7, en suivant la stratégie de Siba.</li>
+    <li>Envoyer chaque semaine une capture de ses statistiques (vues, abonnés, revenus) sur WhatsApp.</li>
+    <li>Respecter les règles de TikTok : pas de repost des vidéos d'autres créateurs, pas de contenu interdit, pas d'achat de vues ou d'abonnés.</li>
+    <li><b>Garder la stratégie pour lui</b> : ne pas la revendre, la filmer, la publier ni l'apprendre à d'autres personnes, pendant le contrat et après.</li>
+    <li>Garder ses accès au programme pour lui seul : ne pas partager son compte, ne pas copier, filmer, revendre ou diffuser les vidéos et documents de la formation.</li>
+    <li>Ne pas lancer, pendant le contrat, un autre compte dans la même niche avec cette stratégie sans en parler à Siba.</li>
+  </ol>
+
+  <h2>6. Les engagements de Siba</h2>
+  <ol>
+    <li>Donner à l'associé l'accès gratuit au programme d'accompagnement tant qu'il est associé.</li>
+    <li>Expliquer sa stratégie complète et la mettre à jour quand elle change.</li>
+    <li>Répondre aux questions de l'associé sous 48 heures (hors week-end et jours fériés).</li>
+    <li>Donner des retours concrets sur les vidéos et les statistiques envoyées.</li>
+  </ol>
+
+  <h2>7. Ce qui n'est pas garanti</h2>
+  <p>Siba transmet une méthode et accompagne l'associé. Les vues et l'argent dépendent du travail, de la régularité et des plateformes : <b>aucun revenu n'est garanti</b>. Si un compte ne gagne rien, personne ne doit rien à l'autre.</p>
+
+  <h2>8. Durée et départ de l'associé</h2>
+  <ul>
+    <li>Le contrat commence à la signature et <b>n'a pas de date de fin</b> : il dure tant que l'associé décide de rester.</li>
+    <li>L'associé peut partir quand il veut, en prévenant Siba par écrit (WhatsApp compris) <b>15 jours avant</b>.</li>
+    <li>Si l'associé ne publie plus pendant 14 jours de suite sans raison, Siba peut considérer qu'il est parti.</li>
+    <li><b>Après le départ, chaque compte du contrat reste partagé à 50 % / 50 %</b> entre Siba et l'associé, quel que soit le partage d'avant. Celui à qui appartient le compte continue de reverser 50 % à l'autre, avec les mêmes règles qu'à l'article 4.</li>
+    <li>L'argent gagné avant le départ reste partagé selon l'article 4, même s'il est payé par la plateforme après.</li>
+    <li>Au départ, l'accès gratuit au programme d'accompagnement s'arrête.</li>
+  </ul>
+
+  <h2>9. Si l'argent n'est pas reversé</h2>
+  <p>Celui qui ne reverse pas la part de l'autre dans les 7 jours reçoit un rappel écrit. Sans paiement 15 jours après ce rappel, l'autre peut réclamer la somme due, à l'amiable puis devant le tribunal compétent.</p>
+
+  <h2>10. Litiges</h2>
+  <p>Les deux parties cherchent d'abord une solution à l'amiable. À défaut, le litige est porté devant le tribunal compétent.</p>
+
+  <h2>11. Signatures</h2>
+  <form class="form" id="signForm" hidden novalidate>
+    <p style="margin-top:0"><b>Remplis tes informations, coche les 2 cases et signe avec ton doigt (ou la souris).</b></p>
+    <div class="grid2">
+      <label class="f">Ton Gmail (pour ouvrir ton accès gratuit)<input name="email" type="email" autocomplete="email" maxlength="120" placeholder="toi@gmail.com"></label>
+      <label class="f">Numéro WhatsApp (avec l'indicatif)<input name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="+225 07 00 00 00 00"></label>
+      <label class="f">Pays de résidence<input name="country" autocomplete="country-name" maxlength="50" placeholder="Côte d'Ivoire, France…"></label>
+    </div>
+    <label class="check"><input type="checkbox" name="c1"> <span>J'ai lu et j'accepte toutes les conditions de ce contrat.</span></label>
+    <label class="check"><input type="checkbox" name="c2"> <span>J'accepte le partage <span data-f="pSiba"></span> % Siba / <span data-f="pAsso"></span> % pour moi, puis 50 / 50 après mon départ, et je garde la stratégie pour moi.</span></label>
+    <div style="margin-top:10px"><b>Ta signature</b> <span class="small">(dessine-la dans le cadre)</span></div>
+    <canvas id="pad" aria-label="Zone de signature"></canvas>
+    <div class="row" style="margin-top:6px"><button class="btn" type="button" id="clear">Effacer</button><span class="small">Ta signature, la date, l'heure et ton appareil sont enregistrés comme preuve.</span></div>
+    <button class="btn main" type="submit" id="go">Signer le contrat</button>
+    <div class="msg" id="msg"></div>
+  </form>
+  <div class="done noprint" id="welcome" hidden>
+    <b>Contrat signé ✓ Bienvenue dans l'équipe !</b>
+    <p style="margin:.4rem 0 0">Ton accès gratuit au programme est ouvert. Connecte-toi avec ton Gmail <b data-f="email"></b> pour voir les modules.</p>
+    <a class='btn main' href='/' style='margin-top:10px'>Me connecter avec Google</a>
+  </div>
+  <div class="sign">
+    <div class="sigbox"><b>L'associé</b><div class="small"><span data-f="nom"></span>, « Lu et approuvé » le <span data-f="signedDate">…</span></div><img class="sigimg" id="sigImg" alt="Signature de l'associé" hidden></div>
+    <div class="sigbox"><b>Le stratège</b><div class="small">Siba Kouadio, pour Siba Cash Empire</div><div class="coachsig">Siba Kouadio</div></div>
+  </div>
+  <div class="proof" id="proof" hidden></div>
+  </div>
+  <footer>Siba Cash Empire · siba-cash-empire.netlify.app</footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="assets/demo.js"></script>
+<script src="assets/common.js"></script>
+<script src="assets/associe.js"></script>
+</body>
+</html>
