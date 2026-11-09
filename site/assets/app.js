@@ -51,7 +51,12 @@
   let profile = await loadProfile();
   if (!profile) { await sleep(1500); profile = await loadProfile(); }
   if (!profile) {
-    view.innerHTML = `<div class="empty">Impossible de charger ton profil. As-tu bien exécuté <strong>supabase/schema.sql</strong> ?</div>`;
+    console.error("Profil introuvable pour", user.id, user.email);
+    view.innerHTML = `<div class="empty">Ton compte est bien connecté (${esc(user.email || "")}), mais ton profil n'a pas pu être chargé.<br><br>
+      <button class="btn btn-primary" onclick="location.reload()">Réessayer</button>
+      <button class="btn" id="relogin">Me reconnecter</button><br><br>
+      <span class="muted small">Si ça continue, envoie une capture de cet écran au coach.</span></div>`;
+    view.querySelector("#relogin").addEventListener("click", async () => { await sb.auth.signOut(); window.location.replace("index.html"); });
     return;
   }
 

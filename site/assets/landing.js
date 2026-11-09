@@ -327,8 +327,21 @@
   }
 
   // ---------- Connexion ----------
+  // Google a renvoyé une erreur : avant, l'élève revenait sur l'accueil sans aucun message
+  const { authReturn, helpDialog } = window.App;
+  if (authReturn.error && !demo) {
+    history.replaceState(null, "", location.pathname + "#rejoindre");
+    const cancelled = /access_denied/i.test(authReturn.errorCode + " " + authReturn.error);
+    helpDialog("La connexion Google n'a pas marché",
+      (cancelled
+        ? "La connexion a été annulée ou refusée par Google.<br><br>"
+        : `Google a répondu : <em>${esc(authReturn.error)}</em><br><br>`) +
+      `Réessaie en cliquant sur « Se connecter avec Google », <strong>depuis Chrome ou Safari</strong> (pas depuis TikTok ou Instagram), avec le Gmail utilisé pour payer.<br><br>Toujours bloqué ? Envoie une capture de cet écran${cfg.WHATSAPP ? " sur WhatsApp" : ""}${cfg.CONTACT_EMAIL && !/exemple/.test(cfg.CONTACT_EMAIL) ? " ou à " + esc(cfg.CONTACT_EMAIL) : ""}.`);
+  }
   if (sb) {
     const { data } = await sb.auth.getSession();
+    // Retour de Google sur l'accueil (au lieu de l'espace membre) : on y va directement
+    if (data.session && authReturn.signedIn && !demo) return window.location.replace("app.html");
     if (data.session) {
       const nav = document.querySelector(".l-nav [data-login]");
       if (nav) nav.textContent = "Mon espace";

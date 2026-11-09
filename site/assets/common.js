@@ -7,6 +7,16 @@
 
   // Tant que Supabase n'est pas configuré, le site tourne en mode démo (assets/demo.js)
   const demo = !configured;
+  // Retour de Google : on garde l'adresse AVANT que Supabase ne la nettoie (jeton ou erreur dedans)
+  const authReturn = (() => {
+    const q = new URLSearchParams(location.search), h = new URLSearchParams(location.hash.replace(/^#\/?/, ""));
+    const pick = (k) => q.get(k) || h.get(k);
+    return {
+      signedIn: !!(h.get("access_token") || q.get("code")),
+      error: pick("error_description") || pick("error") || "",
+      errorCode: pick("error_code") || pick("error") || "",
+    };
+  })();
   const sb = configured
     ? window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY, {
         auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
@@ -88,6 +98,38 @@
   // Google refuse la connexion dans les navigateurs intégrés aux applis (TikTok, Instagram, Facebook…) :
   // erreur « 403 disallowed_useragent ». On rouvre la page dans le vrai navigateur du téléphone.
   const inAppBrowser = () => /FBAN|FBAV|FB_IAB|Instagram|musical_ly|Bytedance|TikTok|Snapchat|Line\/|; wv\)/i.test(navigator.userAgent || "");
+  // Fenêtre d'aide qui reste à l'écran (un simple message disparaît trop vite sur iPhone)
+  function helpDialog(title, html, actions = "") {
+    const back = document.createElement("div");
+    back.className = "modal-back";
+    back.innerHTML = `
+      <div class="card modal" role="dialog" aria-modal="true" style="max-width:420px">
+        <h3 style="margin:0 0 .5rem"></h3>
+        <div class="muted" style="line-height:1.55">${html}</div>
+        <div class="row" style="margin-top:1rem;gap:.5rem;flex-wrap:wrap">${actions}<button class="btn btn-sm" data-close>Fermer</button></div>
+      </div>`;
+    back.querySelector("h3").textContent = title;
+    back.addEventListener("click", (e) => { if (e.target === back || e.target.closest("[data-close]")) back.remove(); });
+    document.body.appendChild(back);
+    return back;
+  }
+
+  // iPhone dans TikTok / Instagram / Facebook : on ne peut pas ouvrir Safari tout seul, on guide l'élève
+  function openInBrowserHelp() {
+    const url = location.origin + location.pathname;
+    const back = helpDialog("Ouvre la page dans Safari",
+      `Google bloque la connexion à l'intérieur de TikTok, Instagram et Facebook.<br><br>
+       <strong>1.</strong> Appuie sur <strong>···</strong> ou <strong>↗</strong> (en haut ou en bas de l'écran)<br>
+       <strong>2.</strong> Choisis <strong>« Ouvrir dans le navigateur »</strong> (Safari)<br>
+       <strong>3.</strong> Clique à nouveau sur « Se connecter avec Google »<br><br>
+       Tu ne trouves pas ? Copie le lien ci-dessous et colle-le dans Safari.`,
+      `<button class="btn btn-sm btn-primary" data-copy>📋 Copier le lien</button>`);
+    back.querySelector("[data-copy]").addEventListener("click", async (e) => {
+      try { await navigator.clipboard.writeText(url); e.target.textContent = "✓ Lien copié, colle-le dans Safari"; }
+      catch (_) { prompt("Copie ce lien et colle-le dans Safari :", url); }
+    });
+  }
+
   function signInWithGoogle() {
     if (inAppBrowser()) {
       const ua = navigator.userAgent || "";
@@ -95,7 +137,7 @@
         toast("Ouverture dans ton navigateur (Chrome) pour la connexion Google…");
         location.href = `intent://${location.host}${location.pathname}${location.search}#Intent;scheme=https;S.browser_fallback_url=${encodeURIComponent(location.href)};end`;
       } else {
-        toast("Google bloque la connexion dans cette appli. Appuie sur ··· en haut, puis « Ouvrir dans le navigateur » (Safari), et reconnecte-toi.", true);
+        openInBrowserHelp();
       }
       return Promise.resolve({ error: null });
     }
@@ -110,5 +152,5 @@
     return "Le paiement est momentanément indisponible. Réessaie dans un instant.";
   }
 
-  window.App = { cfg, sb, configured, demo, confirmDialog, fnErrorMessage, esc, initials, avatar, toast, youtubeId, relTime, fmtDateTime, fmtTime, signInWithGoogle };
+  window.App = { cfg, sb, configured, demo, authReturn, helpDialog, confirmDialog, fnErrorMessage, esc, initials, avatar, toast, youtubeId, relTime, fmtDateTime, fmtTime, signInWithGoogle };
 })();
