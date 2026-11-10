@@ -104,7 +104,7 @@ footer{padding-block:28px;text-align:center;font:700 20px var(--display);text-tr
       <div class="eyebrow" style="color:inherit;opacity:.7">Programme individuel · ailier droit pied gauche</div>
       <h1>Programme Ailier</h1>
       <p>Ailier inversé sur le côté droit, technique et rapide : repiquer pied gauche, éliminer des deux côtés, et surtout tenir les allers-retours avec la tête claire jusqu'à la 90<sup>e</sup>. Footing le matin, séance ballon de 17h00 à 18h30.</p>
-      <div class="chips"><span class="chip">Ailier droit · pied gauche</span><span class="chip">Vitesse + répétition des sprints</span><span class="chip">Lucide 90 min</span></div>
+      <div class="chips"><span class="chip">Ailier droit · pied gauche</span><span class="chip">Vitesse + répétition des sprints</span><span class="chip">Lucide 90 min</span><span class="chip">Les deux pieds</span></div>
     </div>
     <div class="shirt" aria-hidden="true">7<small>AILIER</small></div>
   </div>
@@ -147,6 +147,21 @@ footer{padding-block:28px;text-align:center;font:700 20px var(--display);text-tr
 
 <section>
   <div class="wrap">
+    <div><div class="eyebrow">Les deux pieds</div><h2>Ton pied droit en 8 semaines</h2></div>
+    <p style="margin:0;max-width:70ch">Aujourd'hui, le défenseur sait que tu vas repiquer sur ton gauche : il ferme l'intérieur. Avec un pied droit fiable, tu peux <b>aussi déborder et centrer du droit</b>. Il ne sait plus de quel côté couvrir, et ton crochet vers l'intérieur devient deux fois plus dangereux. <b>Règle : 15 minutes de pied droit à chaque séance, sans exception.</b></p>
+    <div class="grid2">
+      <article class="card"><h3>Semaines 1 et 2 · Le toucher</h3><p style="margin:6px 0 0;font-size:14px">Jonglages du droit (objectif : 30 d'affilée), passes au mur à 5 m, conduite lente. On cherche un contact propre, pas la vitesse. Genou du pied d'appui fléchi, regard sur le ballon au moment de frapper.</p></article>
+      <article class="card"><h3>Semaines 3 et 4 · Conduite et contrôle</h3><p style="margin:6px 0 0;font-size:14px">Conduite rapide du droit en couloir, contrôles orientés du droit, passes au mur en 1 touche. Tu commences à accélérer.</p></article>
+      <article class="card"><h3>Semaines 5 et 6 · Centres et frappes</h3><p style="margin:6px 0 0;font-size:14px">Débordement par l'extérieur + centre du droit. Frappes du plat du pied, puis du cou-de-pied. La précision passe avant la puissance.</p></article>
+      <article class="card"><h3>Semaines 7 et 8 · Sous pression</h3><p style="margin:6px 0 0;font-size:14px">Pied droit après des sprints, en décision rapide, et en match : au moins 5 actions du droit par match. C'est là qu'il devient vraiment ton pied.</p></article>
+    </div>
+    <div class="callout"><b>Le défi maison, chaque jour :</b> 100 touches du pied droit contre un mur (5 minutes), même les jours sans séance. Mets aussi le droit dans les petits gestes : ramener le ballon, faire une passe à un ami, jongler en attendant. Plus il touche le ballon, plus vite il progresse.</div>
+    <div class="vids"><span class="eyebrow">Vidéos pied droit</span><div id="weakVids" style="display:flex;flex-direction:column;gap:6px"></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <div><div class="eyebrow">L'objectif</div><h2>Lucide pendant 90 minutes</h2></div>
     <p style="margin:0;max-width:70ch">Tu as déjà la technique. Ce qui fait la différence chez un ailier de haut niveau, c'est de faire le même geste propre à la 85<sup>e</sup> qu'à la 5<sup>e</sup>. Quand tu es cramé, le cerveau décide moins bien. On travaille donc 4 choses en même temps :</p>
     <div class="grid2">
@@ -167,6 +182,7 @@ footer{padding-block:28px;text-align:center;font:700 20px var(--display);text-tr
       <tr><td>Vitesse 30 m</td><td>Départ arrêté, un ami chronomètre. Meilleur de 3 essais.</td><td>Gagner 0,1 s en 2 mois</td></tr>
       <tr><td>Sprints répétés</td><td>6 × 30 m, un départ toutes les 25 s. Note chaque temps.</td><td>Le dernier sprint moins de 5 % plus lent que le meilleur</td></tr>
       <tr><td>Endurance</td><td>Test 30-15 IFT (vidéo ci-dessous) ou 12 min de course : note la distance.</td><td>Progresser à chaque test</td></tr>
+      <tr><td>Pied droit</td><td>Passes au mur à 5 m en 1 min · jonglages pied droit max · 10 frappes du droit.</td><td>Ton pied droit à 70 % de ton gauche en 8 semaines</td></tr>
       <tr><td>Geste sous fatigue</td><td>6 allers-retours de 40 m, puis 10 frappes enroulées pied gauche.</td><td>7 frappes cadrées sur 10</td></tr>
     </table></div>
     <div class="vids" id="testVids"></div>
@@ -273,6 +289,12 @@ const V = {
   fastest:{t:"Become the fastest player on the pitch",u:"https://www.youtube.com/watch?v=TwSHp8vDAYU",l:"EN"},
   vma1515:{t:"VMA et travail en 15/15",u:"https://www.youtube.com/watch?v=MifIIfbwlsw",l:"FR"},
   test3015:{t:"Améliorer son endurance au football : le test 30-15 IFT",u:"https://www.youtube.com/watch?v=z71VZ5Q4d5E",l:"FR"},
+  weakFr1:{t:"Comment améliorer son mauvais pied au foot ?",u:"https://www.youtube.com/watch?v=H5ZsH8yhE58",l:"FR"},
+  weakFr4:{t:"4 exercices pour améliorer ton mauvais pied",u:"https://www.youtube.com/watch?v=BffDSb8wuA8",l:"FR"},
+  weakFr6:{t:"Comment améliorer son pied faible au football ?",u:"https://www.youtube.com/watch?v=V-QMbQYpsog",l:"FR"},
+  weakEn:{t:"How to actually improve your weak foot",u:"https://www.youtube.com/watch?v=ZKJ3XxuMIaI",l:"EN"},
+  weakDrib:{t:"Dribbling drills to improve your weak foot",u:"https://www.youtube.com/watch?v=pq3_XoLIUnQ",l:"EN"},
+  weakShoot:{t:"Improve shooting with your weak foot",u:"https://www.youtube.com/watch?v=G45gulmcfXE",l:"EN"},
   mastery:{t:"Ball Mastery Essential Skills",u:"https://www.youtube.com/watch?v=7V3hH3KKm6Q",l:"EN"},
   alone:{t:"How to train football alone (and still improve fast)",u:"https://www.youtube.com/watch?v=OUjgfVORsfA",l:"EN"},
   wall:{t:"3 best wall training drills",u:"https://www.youtube.com/watch?v=nv634_GvXHE",l:"EN"},
@@ -307,22 +329,22 @@ const COOL = ["5'","Retour au calme : marche + étirements (mollets, ischios, ad
 const DAYS = [
  {k:"lun",n:"Lundi",
   am:{t:"Footing moteur",d:"35 min",b:[["5'","Trot très lent."],["30'","Footing à allure conversation. C'est ton moteur de base : il te permet de récupérer entre deux sprints pendant 90 min."]],v:[]},
-  pm:{t:"Couloir droit : éliminer + technique sous fatigue",d:"17h00 – 18h30",b:[WARM,["15'","Maîtrise du ballon à vitesse maximale : tu as la technique, maintenant on travaille la vitesse d'exécution. 30 s à fond, 15 s de pause."],["25'","1 contre 1 côté droit : reçois le long de la ligne, pied gauche. Élimine vers l'intérieur (crochet, feinte de frappe) <b>et</b> vers l'extérieur (feinte puis débordement pied droit) pour que le défenseur ne sache jamais. 8 fois chaque côté."],["25'","Technique sous fatigue : 6 × (aller-retour sprint 2 × 40 m, puis directement slalom ballon + frappe). Récupération 90 s. Compte les frappes cadrées."],COOL],v:["wDrib","w6","wSimple"]}},
+  pm:{t:"Couloir droit : éliminer + technique sous fatigue",d:"17h00 – 18h30",b:[WARM,["15'","<b>Pied droit</b> : maîtrise et conduite <b>uniquement du pied droit</b> en couloir (10 × 40 m). Puis 8 débordements par l'extérieur : feinte de repiquer, accélère le long de la ligne pied droit."],["25'","1 contre 1 côté droit : reçois le long de la ligne, pied gauche. Élimine vers l'intérieur (crochet, feinte de frappe) <b>et</b> vers l'extérieur (feinte puis débordement pied droit) pour que le défenseur ne sache jamais. 8 fois chaque côté."],["25'","Technique sous fatigue : 6 × (aller-retour sprint 2 × 40 m, puis directement slalom ballon + frappe). Récupération 90 s. Compte les frappes cadrées."],COOL],v:["weakDrib","wDrib","w6"]}},
  {k:"mar",n:"Mardi",
   am:{t:"Intermittent 15/15",d:"30 min",b:[["10'","Footing lent + gammes."],["16'","2 séries de 8 min : 15 s vite (85 %) / 15 s trot. 3 min de marche entre les deux. C'est l'effort d'un ailier en match."],["4'","Footing lent."]],v:["vma1515"]},
-  pm:{t:"Repiquer et frapper pied gauche",d:"17h00 – 18h30",b:[WARM,["15'","Mur + prise d'info : avant chaque réception, regarde par-dessus ton épaule et dis à voix haute ce que tu vois. Contrôle orienté vers l'avant. 60 ballons."],["30'","Le geste signature : part de l'aile droite, conduite, crochet vers l'axe, frappe enroulée pied gauche au deuxième poteau. 4 séries de 8. Varie : frappe tôt, frappe après 2 touches, feinte de frappe puis pied droit."],["20'","Dernier geste depuis le demi-espace droit : centre rentrant pied gauche, passe en retrait, passe dans la course. 3 cibles, 10 fois chacune."],COOL],v:["inv6","inv5","wShootSolo","cutIn"]}},
+  pm:{t:"Repiquer et frapper pied gauche",d:"17h00 – 18h30",b:[WARM,["15'","<b>Pied droit</b> au mur + prise d'info : avant chaque réception, regarde par-dessus ton épaule. Contrôle orienté et passe <b>du pied droit seulement</b>. 60 ballons, puis 50 jonglages pied droit."],["30'","Le geste signature : part de l'aile droite, conduite, crochet vers l'axe, frappe enroulée pied gauche au deuxième poteau. 4 séries de 8. Varie : frappe tôt, frappe après 2 touches, feinte de frappe puis pied droit."],["20'","Dernier geste depuis le demi-espace droit : centre rentrant pied gauche, passe en retrait, passe dans la course. 3 cibles, 10 fois chacune."],COOL],v:["inv6","inv5","wShootSolo","cutIn"]}},
  {k:"mer",n:"Mercredi",
   am:{t:"Footing récup + gainage",d:"35 min",b:[["25'","Footing très facile."],["10'","Gainage : planche 3 × 45 s, latéral 3 × 30 s par côté."]],v:["abs"]},
-  pm:{t:"Vitesse pure + explosivité",d:"17h00 – 18h15",b:[WARM,["15'","Pliométrie : bonds horizontaux 4 × 6, sauts sur une jambe 3 × 5 par jambe, squat jumps 3 × 6. Qualité avant quantité."],["20'","Sprints : 6 × 10 m départ arrêté, 4 × 30 m départ lancé. Récupération complète (2 min). Toujours à 100 %, sinon ça ne sert à rien."],["25'","Renforcement : squats bulgares 3 × 8, nordic curl 3 × 5, pont fessier sur une jambe 3 × 10, copenhagen plank 3 × 20 s. Des jambes solides, c'est plus de vitesse et moins de blessures."],["10'","Mobilité hanches et chevilles."]],v:["fastest","wSpeed","legs"]}},
+  pm:{t:"Vitesse pure + explosivité",d:"17h00 – 18h30",b:[WARM,["15'","Pliométrie : bonds horizontaux 4 × 6, sauts sur une jambe 3 × 5 par jambe, squat jumps 3 × 6. Qualité avant quantité."],["20'","Sprints : 6 × 10 m départ arrêté, 4 × 30 m départ lancé. Récupération complète (2 min). Toujours à 100 %, sinon ça ne sert à rien."],["25'","Renforcement : squats bulgares 3 × 8, nordic curl 3 × 5, pont fessier sur une jambe 3 × 10, copenhagen plank 3 × 20 s. Des jambes solides, c'est plus de vitesse et moins de blessures."],["10'","<b>Pied droit</b> : 100 passes au mur à 5 m, intérieur puis cou-de-pied. Puis 5 min de mobilité."]],v:["fastest","wSpeed","weakFr4"]}},
  {k:"jeu",n:"Jeudi",
   am:{t:"Footing léger",d:"25 min",b:[["20'","Footing très facile. Garde de l'énergie pour ce soir."],["5'","4 lignes droites progressives."]],v:[]},
-  pm:{t:"Allers-retours : répéter les sprints",d:"17h00 – 18h30",b:[WARM,["25'","Sprints répétés : 3 séries de 6 × 30 m, un départ toutes les 25 s. 4 min de récupération entre les séries. Objectif : ton dernier sprint presque aussi rapide que le premier."],["30'","Match d'ailier simulé : repli défensif en sprint 40 m, récupère le ballon, contre-attaque en conduite 40 m, élimine le plot, puis frappe ou centre. 8 fois, 1 min de récupération. Décide au dernier moment : pose 2 plots de couleur et lance une pièce ou fais crier un ami pour choisir le côté."],COOL],v:["camWing","wIndiv","w3"]}},
+  pm:{t:"Allers-retours : répéter les sprints",d:"17h00 – 18h30",b:[WARM,["25'","Sprints répétés : 3 séries de 6 × 30 m, un départ toutes les 25 s. 4 min de récupération entre les séries. Objectif : ton dernier sprint presque aussi rapide que le premier."],["15'","<b>Pied droit</b> : déborde par l'extérieur et centre du pied droit sur 3 zones (premier poteau, penalty, deuxième poteau). 15 centres."],["20'","Match d'ailier simulé : repli défensif en sprint 40 m, récupère le ballon, contre-attaque en conduite 40 m, élimine le plot, puis frappe ou centre. 6 fois, 1 min de récupération. Décide au dernier moment : pose 2 plots de couleur et lance une pièce ou fais crier un ami pour choisir le côté."],COOL],v:["camWing","wIndiv","w3"]}},
  {k:"ven",n:"Vendredi",
   am:{t:"Footing + lignes droites",d:"35 min",b:[["30'","Footing à allure conversation."],["5'","4 lignes droites de 60 m."]],v:[]},
-  pm:{t:"Lucidité + dernière passe",d:"17h00 – 18h15",b:[WARM,["20'","Mur à haut rythme, 2 touches, avec prise d'info avant chaque ballon. 4 × 3 min."],["20'","Décision : 3 portes de plots (gauche, centre, droite). Un ami annonce la porte au moment de ta prise de balle (sinon, regarde un nombre au hasard sur ton téléphone juste avant de recevoir). Passe ou conduite dans la bonne porte."],["20'","Finition variée : 3 × 10 frappes, pied gauche puis pied droit, enroulé, plat du pied, à ras de terre."],COOL],v:["scanSolo","visual","camGoals"]}},
+  pm:{t:"Lucidité + dernière passe",d:"17h00 – 18h30",b:[WARM,["20'","Mur à haut rythme, 2 touches, avec prise d'info avant chaque ballon. 4 × 3 min."],["20'","Décision : 3 portes de plots (gauche, centre, droite). Un ami annonce la porte au moment de ta prise de balle (sinon, regarde un nombre au hasard sur ton téléphone juste avant de recevoir). Passe ou conduite dans la bonne porte."],["20'","<b>Finition pied droit</b> : 2 × 10 frappes du droit (plat du pied à ras de terre, puis cou-de-pied), puis 10 frappes en alternant gauche et droit selon le côté où tu pousses le ballon."],COOL],v:["scanSolo","weakShoot","camGoals"]}},
  {k:"sam",n:"Samedi",
   am:{t:"Footing long",d:"40 min",b:[["40'","Footing régulier. Si tu as un match dans la journée : rien, ou 15 min de mobilité."]],v:["activ18"]},
-  pm:{t:"Match ou foot entre amis",d:"17h00 – 18h30",b:[["90'","Joue à ton poste : ligne droite, appel dans le dos, provoque, repique. Choisis tes sprints : fonce quand ça peut faire mal à l'adversaire, récupère en marchant quand le ballon est loin."],["Soir","Repas plaisir autorisé."]],v:["alone","wall"]}},
+  pm:{t:"Match ou foot entre amis",d:"17h00 – 18h30",b:[["90'","Joue à ton poste : ligne droite, appel dans le dos, provoque, repique. Choisis tes sprints : fonce quand ça peut faire mal à l'adversaire, récupère en marchant quand le ballon est loin. <b>Défi pied droit : au moins 5 actions du droit</b> (passe, contrôle, centre ou frappe)."],["Soir","Repas plaisir autorisé."]],v:["alone","wall"]}},
  {k:"dim",n:"Dimanche",
   am:{t:"Repos",d:"Réveil 8h00",b:[["20'","Marche tranquille ou mobilité douce."]],v:["stretch15"]},
   pm:{t:"Récupération + bilan",d:"18h00 – 18h30",b:[["30'","Mobilité complète (vidéo ci-dessous), puis bilan de la semaine et préparation de la suivante."]],v:["mob40","stretch8"]}}
@@ -331,7 +353,7 @@ const DAYS = [
 const TIMELINE = [["6h00","Réveil, 1 grand verre d'eau, ½ banane"],["6h15","Footing (voir carte jaune)",1],["6h50","Douche, routine peau, habillage"],["7h15","Petit-déjeuner"],["7h45","Cours / travail / activités"],["10h00","Collation + eau"],["12h30","Déjeuner"],["16h15","Collation pré-séance : banane + pain"],["17h00","Séance ballon (voir carte verte)",1],["18h45","Douche, smoothie récup si dîner tardif"],["19h30","Dîner"],["20h30","Temps perso, révisions, projets"],["21h30","Écrans off, routine peau, 3 priorités de demain"],["22h00","Dodo : 8 h de sommeil",1]];
 const SUNDAY_TL = [["8h00","Réveil, eau, petit-déjeuner tranquille"],["Matin","Marche / mobilité douce"],["Midi","Repas en famille"],["18h00","Mobilité + bilan de la semaine",1],["19h30","Dîner, préparer les repas de la semaine"],["21h30","Écrans off, routine peau"],["22h00","Dodo",1]];
 
-const CHECKS = ["Footing du matin","Séance ballon du soir","2,5 à 3 L d'eau","3 repas + 2 collations","Routine peau matin et soir","Écrans off à 21h30","Coucher à 22h00"];
+const CHECKS = ["Footing du matin","Séance ballon du soir","15 min de pied droit","2,5 à 3 L d'eau","3 repas + 2 collations","Routine peau matin et soir","Écrans off à 21h30","Coucher à 22h00"];
 
 const RECIPES = [
  {t:"Porridge banane-arachide",m:"Petit-déj · 10 min",i:["60 g de flocons d'avoine","250 ml de lait","1 banane","1 c. à soupe de beurre de cacahuète","1 pincée de cannelle, 1 c. à café de miel"],s:["Fais chauffer l'avoine dans le lait 4 à 5 min en remuant.","Coupe la banane en rondelles par-dessus.","Ajoute le beurre de cacahuète, la cannelle et le miel."]},
@@ -345,6 +367,7 @@ const RECIPES = [
 const LIB = [
  ["Ailier inversé : repiquer et frapper",["inv6","inv5","wShootSolo","cutIn","cutWinger","ailierEnch"]],
  ["Ailier : 1 contre 1 et dribble",["ailierSeul","ailier5","wIndiv","w3","w6","wDrib","wSimple"]],
+ ["Pied droit (pied faible)",["weakFr1","weakFr4","weakFr6","weakEn","weakDrib","weakShoot"]],
  ["Lucidité et prise d'info",["scanSolo","visual","shoulder","camGoals","camWing"]],
  ["Vitesse et sprints répétés",["fastest","wSpeed","speed5","cod","vma1515","test3015"]],
  ["Renforcement et centres",["legs","body","body30","abs","centre","centre9"]],
@@ -388,6 +411,7 @@ document.getElementById("recipes").innerHTML = RECIPES.map(r=>`<article class="c
 document.getElementById("vNutri").innerHTML = ["nutriPlan","avantMatch","eatDay","routine"].map(k=>`<li>${link(k)}</li>`).join("");
 document.getElementById("vRecettes").innerHTML = ["recSportif","recPlaylist","preMatch","easyMeal","postTrain"].map(k=>`<li>${link(k)}</li>`).join("");
 document.getElementById("library").innerHTML = LIB.map(([t,ks])=>`<div class="card vidgroup"><h3>${t}</h3><ul>${ks.map(k=>`<li>${link(k)}</li>`).join("")}</ul></div>`).join("");
+document.getElementById("weakVids").innerHTML = ["weakFr1","weakFr4","weakFr6","weakEn","weakDrib","weakShoot"].map(k=>`<div>${link(k)}</div>`).join("");
 document.getElementById("testVids").innerHTML = ["test3015","vma1515"].map(k=>`<div>${link(k)}</div>`).join("");
 document.getElementById("alarms").innerHTML = ALARMS.map(([h,x])=>`<div><b>${h}</b><span>${x}</span></div>`).join("");
 show(todayIdx);
