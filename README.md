@@ -13,3 +13,8 @@ Ton espace de coaching personnel. 4 piliers :
 👉 Commence par remplir [coaching/00-mon-profil.md](coaching/00-mon-profil.md) : je personnalise tout à partir de là.
 
 **Règle n°1 du coach : la régularité bat l'intensité.** Mieux vaut 80 % du plan chaque semaine que 120 % pendant 10 jours puis plus rien.
+
+## Programme Ailier (nouveau)
+- [programme-ailier.html](programme-ailier.html) : programme complet avec footing le matin, séance ballon de 17h00 à 18h30, recettes et liens vidéo YouTube.
+- [emploi-du-temps/](emploi-du-temps/) : feuille A4 à imprimer (PNG + PDF).
+- [rappels/rappels-coach.ics](rappels/rappels-coach.ics) : rappels à importer dans le calendrier du téléphone.

@@ -1,0 +1,353 @@
+<title>Programme Ailier</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: carnet d'entraînement — bandeau "maillot" en tête, sélecteur de jour, puis séances, nutrition, vidéos, rappels. */
+:root{
+  --bg:#f4f6f5; --surface:#ffffff; --ink:#0f1d2b; --muted:#566573; --line:#d8dfdc;
+  --pitch:#16704a; --pitch-soft:#e3f1ea; --amber:#c97a12; --amber-soft:#fbf0de; --band:#0f2a3d; --band-ink:#f4f6f5;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1419; --surface:#132028; --ink:#e8eef0; --muted:#9aabb5; --line:#24343f;
+  --pitch:#3fbf82; --pitch-soft:#173226; --amber:#f0a540; --amber-soft:#33260f; --band:#0a2233; --band-ink:#e8eef0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1419; --surface:#132028; --ink:#e8eef0; --muted:#9aabb5; --line:#24343f;
+  --pitch:#3fbf82; --pitch-soft:#173226; --amber:#f0a540; --amber-soft:#33260f; --band:#0a2233; --band-ink:#e8eef0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+a{color:var(--pitch);font-weight:600;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+h2{font-size:clamp(28px,4vw,38px);text-transform:uppercase;letter-spacing:.5px}
+h3{font-size:22px;text-transform:uppercase;letter-spacing:.4px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--muted)}
+section{padding-block:36px;border-top:1px solid var(--line)}
+section > .wrap{display:grid;gap:18px}
+
+/* bandeau */
+.band{background:var(--band);color:var(--band-ink)}
+.band .wrap{padding-block:30px 26px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:end}
+.band h1{font-size:clamp(44px,8vw,78px);text-transform:uppercase;letter-spacing:1px}
+.band p{margin:8px 0 0;max-width:56ch;opacity:.85}
+.shirt{font-family:var(--display);font-weight:800;font-size:clamp(70px,12vw,120px);line-height:.85;color:transparent;-webkit-text-stroke:2px var(--band-ink);opacity:.9;text-align:center}
+.shirt small{display:block;font-size:14px;letter-spacing:2px;-webkit-text-stroke:0;color:var(--band-ink);opacity:.8;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{border:1px solid color-mix(in srgb,var(--band-ink) 35%,transparent);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600}
+
+/* jours */
+.days{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.days button{flex:1 0 64px;font:700 17px var(--display);text-transform:uppercase;letter-spacing:.5px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:10px 6px;cursor:pointer}
+.days button[aria-pressed="true"]{background:var(--pitch);border-color:var(--pitch);color:#fff}
+.days button .today{display:block;font:600 10px var(--body);letter-spacing:1px;opacity:.8}
+.daygrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;min-width:0}
+.card.am{border-top:4px solid var(--amber)}
+.card.pm{border-top:4px solid var(--pitch)}
+.slot{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:6px}
+.slot .time{font:700 15px var(--display);letter-spacing:.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+ol.blocks{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:10px;counter-reset:b}
+ol.blocks li{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:start}
+ol.blocks .dur{font:700 14px var(--display);background:var(--pitch-soft);color:var(--pitch);border-radius:6px;text-align:center;padding:3px 0;font-variant-numeric:tabular-nums}
+.card.am ol.blocks .dur{background:var(--amber-soft);color:var(--amber)}
+.vids{margin-top:12px;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.vids a::before{content:"▶ ";font-size:11px}
+.lang{font-size:11px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 4px;margin-left:6px}
+.timeline{display:grid;gap:0;font-size:14px}
+.timeline div{display:grid;grid-template-columns:62px 1fr;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.timeline div:last-child{border-bottom:0}
+.timeline b{font:700 15px var(--display);color:var(--muted);font-variant-numeric:tabular-nums}
+.timeline .hl{color:var(--ink);font-weight:600}
+.checks{display:grid;gap:6px;margin-top:6px}
+.checks label{display:flex;gap:10px;align-items:center;font-size:14px;cursor:pointer}
+.checks input{width:18px;height:18px;accent-color:var(--pitch)}
+.progress{font:700 15px var(--display);color:var(--pitch);letter-spacing:.5px}
+
+/* semaine */
+.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13.5px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 15px var(--display);text-transform:uppercase;letter-spacing:.5px;background:var(--bg)}
+td:first-child{font:700 15px var(--display);text-transform:uppercase;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:1px 7px;border-radius:4px;margin-bottom:3px}
+.tag.run{background:var(--amber-soft);color:var(--amber)}
+.tag.ball{background:var(--pitch-soft);color:var(--pitch)}
+.tag.rest{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+
+/* nutrition */
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.recipe h3{font-size:20px}
+.recipe .meta{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin:4px 0 8px}
+.recipe ul,.recipe ol{margin:6px 0 0;padding-left:18px;font-size:14px}
+.recipe p{margin:8px 0 0;font-size:14px}
+.plate{display:flex;gap:12px;align-items:center}
+.plate svg{flex:0 0 110px}
+.rules{margin:0;padding-left:18px;display:grid;gap:4px}
+.vidgroup h3{font-size:19px;margin-bottom:8px}
+.vidgroup ul{margin:0;padding:0;list-style:none;display:grid;gap:7px;font-size:14px}
+.vidgroup li a::before{content:"▶ ";font-size:11px}
+.note{font-size:13px;color:var(--muted)}
+.steps{margin:0;padding-left:20px;display:grid;gap:6px}
+.callout{background:var(--amber-soft);border-radius:10px;padding:14px 18px;font-size:14px}
+footer{padding-block:28px;text-align:center;font:700 20px var(--display);text-transform:uppercase;letter-spacing:1px;border-top:1px solid var(--line)}
+@media (max-width:820px){.daygrid,.grid3,.grid2{grid-template-columns:1fr}.band .wrap{grid-template-columns:1fr}.shirt{text-align:left}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="band">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" style="color:inherit;opacity:.7">Programme individuel · hors club</div>
+      <h1>Programme Ailier</h1>
+      <p>Footing le matin, séance ballon le soir de 17h00 à 18h30. Tout est pensé pour un ailier qui peut aussi jouer milieu offensif : percussion, 1 contre 1, centres, repiquer et frapper.</p>
+      <div class="chips"><span class="chip">Ailier · couloir</span><span class="chip">Milieu offensif · zone 10</span><span class="chip">6 jours / 7</span></div>
+    </div>
+    <div class="shirt" aria-hidden="true">7<small>AILIER</small></div>
+  </div>
+</header>
+
+<section style="border-top:0">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Ta journée</div>
+      <h2 id="dayTitle">Aujourd'hui</h2>
+    </div>
+    <div class="days" id="days" role="group" aria-label="Choisir le jour"></div>
+    <div class="daygrid">
+      <div style="display:grid;gap:18px;min-width:0">
+        <article class="card am" id="amCard"></article>
+        <article class="card pm" id="pmCard"></article>
+      </div>
+      <div style="display:grid;gap:18px;align-content:start;min-width:0">
+        <article class="card">
+          <h3>Déroulé de la journée</h3>
+          <div class="timeline" id="timeline"></div>
+        </article>
+        <article class="card">
+          <div class="slot"><h3>Checklist du jour</h3><span class="progress" id="progress">0 / 7</span></div>
+          <div class="checks" id="checks"></div>
+          <p class="note" style="margin:10px 0 0">Les cases restent cochées sur ce téléphone jusqu'au lendemain.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div><div class="eyebrow">Vue d'ensemble</div><h2>La semaine</h2></div>
+    <div class="tablebox"><table id="weekTable"></table></div>
+    <p class="note" style="margin:0">Règle de sécurité : si tu as mal (pas juste des courbatures) ou si tu es vidé, remplace le footing par 20 min de mobilité. On progresse en récupérant.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div><div class="eyebrow">Carburant</div><h2>Ce que tu manges</h2></div>
+    <div class="grid2">
+      <article class="card">
+        <h3>L'assiette du joueur</h3>
+        <div class="plate" style="margin-top:10px">
+          <svg viewBox="0 0 110 110" role="img" aria-label="Assiette : moitié légumes, un quart protéines, un quart féculents">
+            <circle cx="55" cy="55" r="52" fill="var(--surface)" stroke="var(--line)" stroke-width="3"/>
+            <path d="M55 55 L55 6 A49 49 0 0 0 55 104 Z" fill="var(--pitch)"/>
+            <path d="M55 55 L55 6 A49 49 0 0 1 104 55 Z" fill="var(--amber)"/>
+            <path d="M55 55 L104 55 A49 49 0 0 1 55 104 Z" fill="var(--muted)"/>
+          </svg>
+          <div style="font-size:14px;display:grid;gap:4px">
+            <div><b style="color:var(--pitch)">½ légumes</b> : gombo, épinards, carottes, tomates, salade</div>
+            <div><b style="color:var(--amber)">¼ féculents</b> : riz, igname, plantain, attiéké, pâtes, patate douce</div>
+            <div><b style="color:var(--muted)">¼ protéines</b> : poulet, poisson, œufs, haricots, lentilles</div>
+          </div>
+        </div>
+        <p class="note" style="margin:10px 0 0">Jour de grosse séance : un peu plus de féculents. Jour de repos : un peu moins.</p>
+      </article>
+      <article class="card">
+        <h3>Les règles d'or</h3>
+        <ul class="rules" style="margin-top:10px;font-size:14px">
+          <li><b>2,5 à 3 L d'eau</b> par jour, une gourde toujours avec toi.</li>
+          <li><b>Rien de lourd 2 h avant la séance</b> : une banane et un morceau de pain suffisent.</li>
+          <li><b>Dans l'heure après la séance</b> : protéines + féculents (le smoothie récup ou le dîner).</li>
+          <li><b>Footing du matin à jeun ?</b> Non : un verre d'eau et une demi-banane avant de partir.</li>
+          <li>Sodas, friture et fast-food : <b>1 repas plaisir par semaine</b>, le samedi soir.</li>
+        </ul>
+      </article>
+    </div>
+    <div class="grid3" id="recipes"></div>
+    <div class="grid2">
+      <div class="card vidgroup"><h3>Vidéos nutrition</h3><ul id="vNutri"></ul></div>
+      <div class="card vidgroup"><h3>Recettes en vidéo</h3><ul id="vRecettes"></ul></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div><div class="eyebrow">Vidéothèque</div><h2>Toutes les vidéos</h2></div>
+    <div class="grid3" id="library"></div>
+    <p class="note" style="margin:0">Regarde la vidéo une fois avant la séance, puis fais les exercices sans le téléphone. Choisis 3 exercices max par séance et fais-les à fond.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div><div class="eyebrow">Ne rate plus rien</div><h2>Les rappels sur ton téléphone</h2></div>
+    <div class="grid2">
+      <article class="card">
+        <h3>Installer les rappels</h3>
+        <p style="margin:8px 0 10px;font-size:14px">Je t'ai envoyé le fichier <b>rappels-coach.ics</b> dans notre conversation. Il ajoute tout ton programme dans le calendrier de ton téléphone, avec une alerte avant chaque moment clé.</p>
+        <ol class="steps" style="font-size:14px">
+          <li><b>iPhone</b> : touche le fichier, puis « Tout ajouter » au Calendrier.</li>
+          <li><b>Android / Google Agenda</b> : sur un ordinateur, va sur calendar.google.com, puis Paramètres, Importer et exporter, choisis le fichier, puis Importer. Les rappels arrivent ensuite sur ton téléphone.</li>
+          <li>Crée de préférence un agenda séparé « Coach » pour pouvoir tout masquer ou supprimer d'un coup.</li>
+        </ol>
+      </article>
+      <article class="card">
+        <h3>Ce qui va sonner</h3>
+        <div class="timeline" id="alarms" style="margin-top:6px"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<footer>La régularité bat l'intensité</footer>
+
+<script>
+const V = {
+  ailierSeul:{t:"AILIER : comment s'entraîner seul ?",u:"https://www.youtube.com/watch?v=clTVzGHiTnQ",l:"FR"},
+  ailier5:{t:"5 exercices essentiels pour devenir un ailier de classe mondiale",u:"https://www.youtube.com/watch?v=WItI_9Ra0gk",l:"FR"},
+  ailierEnch:{t:"Spécifique ailier : l'enchaînement à maîtriser",u:"https://www.youtube.com/watch?v=Lcer_SNrsA4",l:"FR"},
+  ailierTech:{t:"Exercice technique pour les ailiers / latéraux",u:"https://www.youtube.com/watch?v=fhMocclRFJ0",l:"FR"},
+  centre:{t:"Exercice de centre football",u:"https://www.youtube.com/watch?v=paClaA5oVgQ",l:"FR"},
+  centre9:{t:"Spécifique ailier : travail du centre (#9Academy)",u:"https://www.youtube.com/watch?v=ThKw7hboEao",l:"FR"},
+  wIndiv:{t:"Individual Winger Training",u:"https://www.youtube.com/watch?v=PrRcaifk-y0",l:"EN"},
+  w3:{t:"3 Individual Winger Drills",u:"https://www.youtube.com/watch?v=4kYORAMzBsA",l:"EN"},
+  wDrib:{t:"3 Winger Dribbling Drills",u:"https://www.youtube.com/watch?v=Wminh3q-9AE",l:"EN"},
+  w6:{t:"Give me 6 minutes to make you a better winger",u:"https://www.youtube.com/watch?v=zF4VmFHfbuM",l:"EN"},
+  wSimple:{t:"The best and most simple dribbling training for wingers",u:"https://www.youtube.com/watch?v=UNIYO4cB6ng",l:"EN"},
+  wSpeed:{t:"3 Speed & Agility Drills for Wingers",u:"https://www.youtube.com/watch?v=O_pN6wxhN0U",l:"EN"},
+  camGoals:{t:"The best drills to create more goals as an attacking midfielder",u:"https://www.youtube.com/watch?v=ZThgz28VYVU",l:"EN"},
+  camShoot:{t:"3 individual shooting drills for attacking midfielders",u:"https://www.youtube.com/watch?v=24xj0XY-TJY",l:"EN"},
+  camWing:{t:"Attacking Midfielder and Winger Training",u:"https://www.youtube.com/watch?v=1JsFCqDuWOg",l:"EN"},
+  mastery:{t:"Ball Mastery Essential Skills",u:"https://www.youtube.com/watch?v=7V3hH3KKm6Q",l:"EN"},
+  alone:{t:"How to train football alone (and still improve fast)",u:"https://www.youtube.com/watch?v=OUjgfVORsfA",l:"EN"},
+  wall:{t:"3 best wall training drills",u:"https://www.youtube.com/watch?v=nv634_GvXHE",l:"EN"},
+  touch:{t:"10 essential first touch drills",u:"https://www.youtube.com/watch?v=phYwvJLMfS0",l:"EN"},
+  body:{t:"Full body football workout (no equipment)",u:"https://www.youtube.com/watch?v=8mOaPi5WkHg",l:"EN"},
+  legs:{t:"Build strong footballer legs in 30 days, no gym",u:"https://www.youtube.com/watch?v=KvU0TH1_mUw",l:"EN"},
+  abs:{t:"Intense abs workout for football players",u:"https://www.youtube.com/watch?v=6C8roXLdWGw",l:"EN"},
+  body30:{t:"30 min full body soccer workout (follow along)",u:"https://www.youtube.com/watch?v=lAuZL_bgXs8",l:"EN"},
+  speed5:{t:"5 essential speed and agility drills",u:"https://www.youtube.com/watch?v=3ew2m3m5f0M",l:"EN"},
+  cod:{t:"Change direction faster",u:"https://www.youtube.com/watch?v=cRowvUOWNVg",l:"EN"},
+  stretch8:{t:"8 min stretching routine for footballers",u:"https://www.youtube.com/watch?v=YdxhMzzUDxU",l:"EN"},
+  activ18:{t:"18 min full body activation routine (follow along)",u:"https://www.youtube.com/watch?v=DJY-2Sa20vk",l:"EN"},
+  stretch15:{t:"15 min full body stretch (dynamic + static)",u:"https://www.youtube.com/watch?v=U1Cl7shMXhc",l:"EN"},
+  mob40:{t:"40-minute mobility session for soccer players",u:"https://www.youtube.com/watch?v=NeQZeVaPErw",l:"EN"},
+  nutriPlan:{t:"Le plan nutrition du footballeur amateur (guide complet)",u:"https://www.youtube.com/watch?v=q8PTGDn-KAQ",l:"FR"},
+  avantMatch:{t:"Comment manger avant match ?",u:"https://www.youtube.com/watch?v=NOXI3o1rHG4",l:"FR"},
+  eatDay:{t:"What I eat in a day as a professional footballer",u:"https://www.youtube.com/watch?v=9G3x4h5H2xc",l:"EN"},
+  routine:{t:"The perfect daily routine for footballers",u:"https://www.youtube.com/watch?v=4xuS7g0RCq4",l:"EN"},
+  recSportif:{t:"Recette pour sportif (cuisine rapide)",u:"https://www.youtube.com/watch?v=nh7GBn05i9o",l:"FR"},
+  recPlaylist:{t:"Recettes pour les sportifs (playlist)",u:"https://www.youtube.com/playlist?list=PLebshOWXUsg2DiItVD_6l5qsYO3opV851",l:"FR"},
+  preMatch:{t:"The best pre-match meal for footballers (recette pas à pas)",u:"https://www.youtube.com/watch?v=BfuWhKDaCxQ",l:"EN"},
+  easyMeal:{t:"One of the healthiest / easiest meals to cook as a footballer",u:"https://www.youtube.com/watch?v=VH0j8X-HAqs",l:"EN"},
+  postTrain:{t:"Eat this after training: the perfect athlete's meal",u:"https://www.youtube.com/watch?v=XxKklk6WQvQ",l:"EN"},
+  skin1:{t:"Skin care routine homme (simple et rapide)",u:"https://www.youtube.com/watch?v=RlgK-X-KHPo",l:"FR"},
+  skin2:{t:"Comment avoir une belle peau (routine visage homme)",u:"https://www.youtube.com/watch?v=GcEvSQew_uU",l:"FR"}
+};
+const link = k => `<a href="${V[k].u}" target="_blank" rel="noopener">${V[k].t}</a><span class="lang">${V[k].l}</span>`;
+
+const WARM = ["10'","Échauffement : 5 min de jonglages libres, puis montées de genoux, talons-fesses, pas chassés, 3 accélérations."];
+const COOL = ["5'","Retour au calme : marche + étirements (mollets, ischios, adducteurs, hanches)."];
+
+const DAYS = [
+ {k:"lun",n:"Lundi",
+  am:{t:"Footing endurance",d:"30 min",b:[["5'","Marche rapide puis trot très lent."],["25'","Footing à allure conversation : tu dois pouvoir parler sans être essoufflé."]],v:[]},
+  pm:{t:"Maîtrise du ballon + 1 contre 1",d:"17h00 – 18h30",b:[WARM,["15'","Maîtrise du ballon : semelles, intérieur-extérieur, roulettes. 30 s d'effort / 15 s de pause."],["25'","Conduite en couloir (10 m de large × 40 m) : 6 passages pied droit, 6 pied gauche, 4 en changeant de pied."],["25'","Dribble ailier face à un plot-défenseur : crochet intérieur, passement de jambes, feinte de centre. 8 répétitions par geste, puis accélère sur 10 m."],COOL],v:["mastery","wDrib","w6"]}},
+ {k:"mar",n:"Mardi",
+  am:{t:"Fractionné court",d:"25 min",b:[["10'","Footing très lent pour chauffer."],["10'","10 × (30 s rapide / 30 s lent). Le rapide = 80 %, pas un sprint."],["5'","Footing lent pour récupérer."]],v:[]},
+  pm:{t:"Centres + finition d'ailier",d:"17h00 – 18h30",b:[WARM,["20'","Contrôle orienté au mur : reçois, oriente vers l'avant en 1 touche, repasse. 50 par pied."],["30'","Centres : départ du couloir, conduite rapide, centre sur 3 cibles (premier poteau, point de penalty, deuxième poteau). 10 par zone et par pied."],["20'","Finition : repique de l'aile vers l'axe et frappe enroulée au deuxième poteau. 3 séries de 8."],COOL],v:["centre","centre9","ailierEnch"]}},
+ {k:"mer",n:"Mercredi",
+  am:{t:"Footing récup + gainage",d:"35 min",b:[["25'","Footing très facile, respiration par le nez si possible."],["10'","Gainage : planche 3 × 45 s, latéral 3 × 30 s par côté."]],v:["abs"]},
+  pm:{t:"Renforcement + vitesse",d:"17h00 – 18h15",b:[WARM,["20'","Vitesse et agilité : 6 départs 10 m, 4 sprints 30 m, 6 changements de direction en slalom. Récupération complète entre chaque."],["35'","Renforcement sans matériel : squats 4 × 12, fentes 3 × 10 par jambe, pont fessier 3 × 12, nordic curl 3 × 5, pompes 4 × max, copenhagen plank 3 × 20 s."],["10'","Mobilité hanches et chevilles."]],v:["wSpeed","speed5","body","legs"]}},
+ {k:"jeu",n:"Jeudi",
+  am:{t:"Sprints + côtes",d:"25 min",b:[["10'","Footing lent + gammes (genoux, talons, pas chassés)."],["10'","6 sprints de 20 m + 4 montées de côte de 15 s. Retour en marchant."],["5'","Footing lent."]],v:[]},
+  pm:{t:"Dribble, repiquer, frapper",d:"17h00 – 18h30",b:[WARM,["20'","Pied faible : 100 touches de conduite, 50 passes au mur, 20 frappes. Seulement le pied faible."],["30'","Ailier inversé : conduite le long de la ligne, crochet vers l'axe, frappe. Alterne côté droit et côté gauche. 4 séries de 6."],["20'","1 contre 1 avec plots : élimine le plot avec un geste et accélère sur 10 m. 3 gestes différents, 6 fois chacun."],COOL],v:["wIndiv","w3","wSimple"]}},
+ {k:"ven",n:"Vendredi",
+  am:{t:"Footing + lignes droites",d:"35 min",b:[["30'","Footing à allure conversation."],["5'","4 lignes droites de 60 m en accélération progressive."]],v:[]},
+  pm:{t:"Milieu offensif : dernière passe et frappe",d:"17h00 – 18h30",b:[WARM,["20'","Jeu au mur en 2 touches : contrôle orienté, passe, déplacement. 4 × 3 min."],["25'","Réception dos au but, demi-tour et passe en profondeur entre 2 plots (la porte). 4 séries de 8."],["25'","Frappes de 18 à 25 m : 3 séries de 10, coup de pied à l'intérieur pour la précision, puis du coup de pied pour la puissance."],COOL],v:["camGoals","camShoot","camWing"]}},
+ {k:"sam",n:"Samedi",
+  am:{t:"Footing long",d:"40 min",b:[["40'","Footing régulier. Si tu as un match dans la journée, remplace par 15 min de mobilité."]],v:["activ18"]},
+  pm:{t:"Match ou foot entre amis",d:"17h00 – 18h30",b:[["90'","Joue ! Mets en pratique : prendre le couloir, provoquer en 1 contre 1, centrer ou repiquer. Si personne n'est dispo : séance libre au mur + jonglages."],["Soir","Repas plaisir autorisé."]],v:["alone","wall"]}},
+ {k:"dim",n:"Dimanche",
+  am:{t:"Repos",d:"Réveil 8h00",b:[["20'","Marche tranquille ou mobilité douce."]],v:["stretch15"]},
+  pm:{t:"Récupération + bilan",d:"18h00 – 18h30",b:[["30'","Mobilité complète (vidéo ci-dessous), puis bilan de la semaine et préparation de la suivante."]],v:["mob40","stretch8"]}}
+];
+
+const TIMELINE = [["6h00","Réveil, 1 grand verre d'eau, ½ banane"],["6h15","Footing (voir carte jaune)",1],["6h50","Douche, routine peau, habillage"],["7h15","Petit-déjeuner"],["7h45","Cours / travail / activités"],["10h00","Collation + eau"],["12h30","Déjeuner"],["16h15","Collation pré-séance : banane + pain"],["17h00","Séance ballon (voir carte verte)",1],["18h45","Douche, smoothie récup si dîner tardif"],["19h30","Dîner"],["20h30","Temps perso, révisions, projets"],["21h30","Écrans off, routine peau, 3 priorités de demain"],["22h00","Dodo : 8 h de sommeil",1]];
+const SUNDAY_TL = [["8h00","Réveil, eau, petit-déjeuner tranquille"],["Matin","Marche / mobilité douce"],["Midi","Repas en famille"],["18h00","Mobilité + bilan de la semaine",1],["19h30","Dîner, préparer les repas de la semaine"],["21h30","Écrans off, routine peau"],["22h00","Dodo",1]];
+
+const CHECKS = ["Footing du matin","Séance ballon du soir","2,5 à 3 L d'eau","3 repas + 2 collations","Routine peau matin et soir","Écrans off à 21h30","Coucher à 22h00"];
+
+const RECIPES = [
+ {t:"Porridge banane-arachide",m:"Petit-déj · 10 min",i:["60 g de flocons d'avoine","250 ml de lait","1 banane","1 c. à soupe de beurre de cacahuète","1 pincée de cannelle, 1 c. à café de miel"],s:["Fais chauffer l'avoine dans le lait 4 à 5 min en remuant.","Coupe la banane en rondelles par-dessus.","Ajoute le beurre de cacahuète, la cannelle et le miel."]},
+ {t:"Omelette complète",m:"Petit-déj ou dîner · 10 min",i:["3 œufs","1 poignée d'épinards","1 tomate, ½ oignon","2 tranches de pain complet"],s:["Fais revenir l'oignon et la tomate 3 min avec un filet d'huile.","Ajoute les épinards, puis les œufs battus salés-poivrés.","Cuis 3 min à feu moyen, plie et sers avec le pain."]},
+ {t:"Riz poulet-légumes",m:"Déjeuner · à préparer pour 3 jours",i:["2 filets de poulet","250 g de riz","1 oignon, 1 poivron, 2 carottes","Ail, gingembre, sel, poivre, épices"],s:["Cuis le riz.","Coupe le poulet en morceaux, fais-le dorer 6 à 8 min avec l'ail et le gingembre.","Ajoute les légumes coupés fin, couvre 10 min.","Divise en 3 boîtes : déjeuners de lundi, mardi, mercredi."]},
+ {t:"Pâtes thon-tomate",m:"Veille de match · 15 min",i:["120 g de pâtes","1 boîte de thon au naturel","Sauce tomate maison ou en boîte","Oignon, ail, herbes"],s:["Cuis les pâtes.","Fais revenir oignon et ail, ajoute la sauce tomate 5 min.","Ajoute le thon émietté, mélange avec les pâtes. Pas de friture la veille d'un match."]},
+ {t:"Poisson au four + igname",m:"Dîner · 30 min",i:["1 poisson (tilapia, maquereau) ou 2 filets","300 g d'igname ou de patate douce","Citron, ail, oignon, piment doux","Légumes (gombo, haricots verts ou salade)"],s:["Fais bouillir l'igname en morceaux 20 min.","Assaisonne le poisson (citron, ail, oignon) et cuis-le au four ou braisé 15 à 20 min.","Sers avec les légumes. Version attiéké possible."]},
+ {t:"Smoothie récup",m:"Après la séance · 3 min",i:["1 yaourt nature ou 250 ml de lait","1 banane","2 c. à soupe d'avoine","1 c. à soupe d'arachides ou de beurre de cacahuète"],s:["Mixe tout 30 secondes.","Bois-le dans les 30 min après la séance si le dîner est dans plus d'une heure."]}
+];
+
+const LIB = [
+ ["Ailier : spécifique poste",["ailierSeul","ailier5","ailierEnch","ailierTech","wIndiv","w3","w6"]],
+ ["Dribble et 1 contre 1",["wDrib","wSimple","mastery","alone"]],
+ ["Centres et finition",["centre","centre9","camShoot"]],
+ ["Milieu offensif",["camGoals","camWing","wall","touch"]],
+ ["Vitesse et renforcement",["wSpeed","speed5","cod","body","body30","legs","abs"]],
+ ["Mobilité, routine et soin",["activ18","stretch8","stretch15","mob40","routine","skin1","skin2"]]
+];
+
+const ALARMS = [["5h55","Footing dans 20 min (lundi au samedi)"],["10h00","Collation + eau"],["16h15","Collation pré-séance"],["16h45","Séance ballon dans 15 min"],["19h30","Dîner récup"],["21h30","Écrans off, routine peau"],["21h55","Dodo dans 5 min"],["Dim 18h00","Bilan de la semaine"]];
+
+let current = 0;
+const todayIdx = (new Date().getDay()+6)%7;
+const dayBtns = document.getElementById("days");
+DAYS.forEach((d,i)=>{const b=document.createElement("button");b.type="button";b.id="day-"+d.k;b.innerHTML=d.k+(i===todayIdx?'<span class="today">auj.</span>':'');b.addEventListener("click",()=>show(i));dayBtns.appendChild(b);});
+
+const card = (s,label,cls)=>`<div class="slot"><div><div class="eyebrow">${label}</div><h3>${s.t}</h3></div><span class="time">${s.d}</span></div>
+<ol class="blocks">${s.b.map(([d,x])=>`<li><span class="dur">${d}</span><span>${x}</span></li>`).join("")}</ol>
+${s.v.length?`<div class="vids"><span class="eyebrow">Vidéos</span>${s.v.map(link).map(x=>`<div>${x}</div>`).join("")}</div>`:""}`;
+
+function storeKey(i){return "checks-"+new Date().toISOString().slice(0,10)+"-"+i}
+function readChecks(i){try{return JSON.parse(localStorage.getItem(storeKey(i))||"[]")}catch(e){return []}}
+function writeChecks(i,v){try{localStorage.setItem(storeKey(i),JSON.stringify(v))}catch(e){}}
+
+function show(i){
+  current=i;const d=DAYS[i];
+  [...dayBtns.children].forEach((b,j)=>b.setAttribute("aria-pressed",j===i?"true":"false"));
+  document.getElementById("dayTitle").textContent = i===todayIdx ? "Aujourd'hui · "+d.n : d.n;
+  document.getElementById("amCard").innerHTML = card(d.am, i===6?"Matin":"Matin · 6h15","am");
+  document.getElementById("pmCard").innerHTML = card(d.pm,"Soir","pm");
+  const tl = i===6?SUNDAY_TL:TIMELINE;
+  document.getElementById("timeline").innerHTML = tl.map(([h,x,hl])=>`<div><b>${h}</b><span class="${hl?'hl':''}">${x}</span></div>`).join("");
+  const saved=readChecks(i);
+  document.getElementById("checks").innerHTML = CHECKS.map((c,j)=>`<label for="ck${j}"><input type="checkbox" id="ck${j}" ${saved.includes(j)?"checked":""}> ${c}</label>`).join("");
+  document.querySelectorAll("#checks input").forEach((el,j)=>el.addEventListener("change",()=>{const s=new Set(readChecks(i));el.checked?s.add(j):s.delete(j);writeChecks(i,[...s]);prog();}));
+  prog();
+}
+function prog(){const n=document.querySelectorAll("#checks input:checked").length;document.getElementById("progress").textContent=n+" / "+CHECKS.length;}
+
+document.getElementById("weekTable").innerHTML = `<tr><th>Jour</th><th>Matin · 6h15</th><th>Soir · 17h00</th></tr>`+
+  DAYS.map(d=>`<tr><td>${d.n}</td><td><span class="tag ${d.k==='dim'?'rest':'run'}">${d.am.d}</span><br>${d.am.t}</td><td><span class="tag ${d.k==='dim'?'rest':'ball'}">${d.pm.d}</span><br>${d.pm.t}</td></tr>`).join("");
+
+document.getElementById("recipes").innerHTML = RECIPES.map(r=>`<article class="card recipe"><h3>${r.t}</h3><div class="meta">${r.m}</div><b style="font-size:13px">Ingrédients</b><ul>${r.i.map(x=>`<li>${x}</li>`).join("")}</ul><b style="font-size:13px;display:block;margin-top:8px">Préparation</b><ol>${r.s.map(x=>`<li>${x}</li>`).join("")}</ol></article>`).join("");
+document.getElementById("vNutri").innerHTML = ["nutriPlan","avantMatch","eatDay","routine"].map(k=>`<li>${link(k)}</li>`).join("");
+document.getElementById("vRecettes").innerHTML = ["recSportif","recPlaylist","preMatch","easyMeal","postTrain"].map(k=>`<li>${link(k)}</li>`).join("");
+document.getElementById("library").innerHTML = LIB.map(([t,ks])=>`<div class="card vidgroup"><h3>${t}</h3><ul>${ks.map(k=>`<li>${link(k)}</li>`).join("")}</ul></div>`).join("");
+document.getElementById("alarms").innerHTML = ALARMS.map(([h,x])=>`<div><b>${h}</b><span>${x}</span></div>`).join("");
+show(todayIdx);
+</script>
