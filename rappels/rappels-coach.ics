@@ -10,11 +10,11 @@ DTSTAMP:20261110T120000Z
 DTSTART:20261116T061500
 DTEND:20261116T065000
 RRULE:FREQ=WEEKLY;BYDAY=MO
-SUMMARY:🏃 Footing endurance 30 min
+SUMMARY:🏃 Footing moteur 35 min
 DESCRIPTION:Avant de partir : 1 grand verre d'eau + ½ banane.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🏃 Footing endurance 30 min
+DESCRIPTION:🏃 Footing moteur 35 min
 TRIGGER:-PT20M
 END:VALARM
 END:VEVENT
@@ -24,11 +24,11 @@ DTSTAMP:20261110T120000Z
 DTSTART:20261117T061500
 DTEND:20261117T065000
 RRULE:FREQ=WEEKLY;BYDAY=TU
-SUMMARY:🏃 Fractionné : 10 × (30 s rapide / 30 s lent)
+SUMMARY:🏃 Intermittent 15/15 : 2 × 8 min
 DESCRIPTION:Avant de partir : 1 grand verre d'eau + ½ banane.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🏃 Fractionné : 10 × (30 s rapide / 30 s lent)
+DESCRIPTION:🏃 Intermittent 15/15 : 2 × 8 min
 TRIGGER:-PT20M
 END:VALARM
 END:VEVENT
@@ -52,11 +52,11 @@ DTSTAMP:20261110T120000Z
 DTSTART:20261112T061500
 DTEND:20261112T065000
 RRULE:FREQ=WEEKLY;BYDAY=TH
-SUMMARY:🏃 Sprints 6 × 20 m + 4 côtes
+SUMMARY:🏃 Footing léger 20 min + lignes droites
 DESCRIPTION:Avant de partir : 1 grand verre d'eau + ½ banane.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:🏃 Sprints 6 × 20 m + 4 côtes
+DESCRIPTION:🏃 Footing léger 20 min + lignes droites
 TRIGGER:-PT20M
 END:VALARM
 END:VEVENT
@@ -276,12 +276,12 @@ DTSTAMP:20261110T120000Z
 DTSTART:20261116T170000
 DTEND:20261116T183000
 RRULE:FREQ=WEEKLY;BYDAY=MO
-SUMMARY:⚽ Séance : Maîtrise du ballon + dribble 1 contre 1
+SUMMARY:⚽ Séance : 1 contre 1 + technique sous fatigue
 DESCRIPTION:Échauffement 10 min. Le détail et les vidéos sont dans ton P
  rogramme Ailier.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⚽ Séance : Maîtrise du ballon + dribble 1 contre 1
+DESCRIPTION:⚽ Séance : 1 contre 1 + technique sous fatigue
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
@@ -291,12 +291,12 @@ DTSTAMP:20261110T120000Z
 DTSTART:20261117T170000
 DTEND:20261117T183000
 RRULE:FREQ=WEEKLY;BYDAY=TU
-SUMMARY:⚽ Séance : Centres + finition d'ailier
+SUMMARY:⚽ Séance : Repiquer et frapper pied gauche
 DESCRIPTION:Échauffement 10 min. Le détail et les vidéos sont dans ton P
  rogramme Ailier.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⚽ Séance : Centres + finition d'ailier
+DESCRIPTION:⚽ Séance : Repiquer et frapper pied gauche
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
@@ -306,12 +306,12 @@ DTSTAMP:20261110T120000Z
 DTSTART:20261111T170000
 DTEND:20261111T183000
 RRULE:FREQ=WEEKLY;BYDAY=WE
-SUMMARY:⚽ Séance : Renforcement + vitesse
+SUMMARY:⚽ Séance : Vitesse pure + explosivité
 DESCRIPTION:Échauffement 10 min. Le détail et les vidéos sont dans ton P
  rogramme Ailier.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⚽ Séance : Renforcement + vitesse
+DESCRIPTION:⚽ Séance : Vitesse pure + explosivité
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
@@ -321,12 +321,12 @@ DTSTAMP:20261110T120000Z
 DTSTART:20261112T170000
 DTEND:20261112T183000
 RRULE:FREQ=WEEKLY;BYDAY=TH
-SUMMARY:⚽ Séance : Pied faible\, repiquer et frapper
+SUMMARY:⚽ Séance : Allers-retours : sprints répétés
 DESCRIPTION:Échauffement 10 min. Le détail et les vidéos sont dans ton P
  rogramme Ailier.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⚽ Séance : Pied faible\, repiquer et frapper
+DESCRIPTION:⚽ Séance : Allers-retours : sprints répétés
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
@@ -336,14 +336,12 @@ DTSTAMP:20261110T120000Z
 DTSTART:20261113T170000
 DTEND:20261113T183000
 RRULE:FREQ=WEEKLY;BYDAY=FR
-SUMMARY:⚽ Séance : Milieu offensif : passes au mur\, profondeur\, frappe
- s de loin
+SUMMARY:⚽ Séance : Lucidité + dernière passe
 DESCRIPTION:Échauffement 10 min. Le détail et les vidéos sont dans ton P
  rogramme Ailier.
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:⚽ Séance : Milieu offensif : passes au mur\, profondeur\, fr
- appes de loin
+DESCRIPTION:⚽ Séance : Lucidité + dernière passe
 TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
